@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/01/27 17:35:37 by cisis            ###   ########.fr       */
+/*   Updated: 2021/01/27 17:55:38 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ typedef struct	s_parsed
 
 int				parse_file(char *filepath);
 int				process_error(void);
+int				validate_list(t_parsed **parsed, t_list *lst);
 
 #endif

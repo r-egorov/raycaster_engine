@@ -6,7 +6,7 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/01/27 17:32:42 by cisis            ###   ########.fr        #
+#    Updated: 2021/01/27 17:53:20 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ PARCERDIR		=	./parser/
 LIBFTDIR		=	./libft/
 ERRDIR			=	./errors/
 
-PARSERSRCS		=	$(PARCERDIR)parser.c
-			
+PARSERSRCS		=	$(PARCERDIR)parser.c $(PARCERDIR)validate_list.c
+
 MAINSRCS		=	$(MAINDIR)main.c
 
 ERRSRCS			=	$(ERRDIR)process_errors.c

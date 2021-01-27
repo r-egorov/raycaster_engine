@@ -6,22 +6,23 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:47:50 by cisis             #+#    #+#             */
-/*   Updated: 2021/01/27 17:36:43 by cisis            ###   ########.fr       */
+/*   Updated: 2021/01/27 17:57:12 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	free_str(void *line)
+static void		free_str(void *line)
 {
 	if (line)
 		free(line);
 }
 
-void		print_list(t_list *head)
+static void		print_list(t_list *head) //PRINTF
 {
-	int i = 0;
+	int 		i;
 
+	i = 0;
 	while (head)
 	{
 		printf("%d - %s\n", i, (char*)head->content);
@@ -30,9 +31,9 @@ void		print_list(t_list *head)
 	}
 }
 
-static int	list_append(t_list **head, char *line)
+static int		list_append(t_list **head, char *line)
 {
-	char *line_copy;
+	char 		*line_copy;
 
 	if (!(line_copy = ft_strdup(line)))
 		return (-1);
@@ -40,29 +41,37 @@ static int	list_append(t_list **head, char *line)
 	return (0);
 }
 
-int			parse_file(char *filepath)
+static int		init_list(int fd, t_list **head)
 {
-	int		fd;
-	int		gnl;
-	t_list	*head;
-	char	*line;
+	int			gnl;
+	char		*line;
 
-	if ((fd = open(filepath, O_RDONLY)) == -1)
-		return (process_error());
-
-	head = NULL;
 	gnl = 1;
 	while (gnl == 1)
 	{
 		if ((gnl = get_next_line(fd, &line)) == -1)
 		{
 			free_str(line);
-			break ;
+			return (-1);
 		}
-		list_append(&head, line);
+		list_append(head, line);
 		free(line);
 	}
-	print_list(head);
+	return (0);
+}
+
+int				parse_file(char *filepath)
+{
+	int			fd;
+	t_list		*head;
+	t_parsed	*parsed;
+
+	head = NULL;
+	if (((fd = open(filepath, O_RDONLY)) == -1) ||
+		(init_list(fd, &head) == -1) ||
+	 	(validate_list(&parsed, head)) == -1)
+		return (process_error());
+	print_list(head); //PRINTF
 	ft_lstclear(&head, free_str);
 	return (0);
 }

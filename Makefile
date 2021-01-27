@@ -6,7 +6,7 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/01/27 16:23:54 by cisis            ###   ########.fr        #
+#    Updated: 2021/01/27 17:32:42 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ OBJS			=	$(patsubst %.c,%.o,$(SRCS))
 CCFLAGS			=	-Wall -Wextra -Werror
 
 .c.o:				
-					gcc $(CCFLAGS) -c $< -I $(INCLUDES) -o $(<:.c=.o) -O3 
+					gcc $(CCFLAGS) -c $< -I $(INCLUDES) -o $(<:.c=.o) -O3
 
 all:				$(NAME)
 
@@ -42,7 +42,11 @@ lft:
 
 $(NAME):			$(OBJS)
 					make lft
-					gcc $? -o $(NAME) -L$(LIBFTDIR) -lft
+					gcc $(CCFLAGS) $? -o $(NAME) -L$(LIBFTDIR) -lft
+
+debug:              $(OBJS)
+					make lft
+					gcc $(CCFLAGS) -g $? -o $(NAME) -L$(LIBFTDIR) -lft
 
 clean:				
 					rm -f $(OBJS) $(LIBFTDIR)$(LIBFTNAME)

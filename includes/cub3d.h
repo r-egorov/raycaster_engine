@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/01/27 16:22:10 by cisis            ###   ########.fr       */
+/*   Updated: 2021/01/27 17:35:37 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,21 @@
 # include <stdio.h>
 # include <string.h>
 
-int		parse_file(char *filepath);
-int		process_error(void);
+typedef struct	s_parsed
+{
+	int			res_width;
+	int			res_height;
+	char		*north_texture_path;
+	char		*south_texture_path;
+	char		*west_texture_path;
+	char		*east_texture_path;
+	char		*sprite_texture_path;
+	int			floor_color;
+	int			ceiling_color;
+	char		**map;
+}				t_parsed;
+
+int				parse_file(char *filepath);
+int				process_error(void);
 
 #endif

@@ -2,7 +2,6 @@ NAME			=	libft.a
 
 INCLUDES		=	../includes
 SRCSDIR			=	srcs/
-GNLDIR			=	$(SRCSDIR)get_next_line/
 
 SRCS			=	$(SRCSDIR)ft_strlen.c		$(SRCSDIR)ft_memset.c  \
 					$(SRCSDIR)ft_bzero.c		$(SRCSDIR)ft_memcpy.c  \
@@ -27,7 +26,7 @@ SRCS			=	$(SRCSDIR)ft_strlen.c		$(SRCSDIR)ft_memset.c  \
 					$(SRCSDIR)ft_lstclear.c 	$(SRCSDIR)ft_lstiter.c \
 					$(SRCSDIR)ft_lstmap.c		$(SRCSDIR)ft_lutoa_base.c \
 					$(SRCSDIR)ft_nbrlen.c \
-					$(GNLDIR)get_next_line.c	$(GNLDIR)get_next_line_utils.c
+					$(SRCSDIR)get_next_line.c
 
 OBJS			=	$(patsubst %.c,%.o,$(SRCS))
 
@@ -40,8 +39,7 @@ CCFLAGS			=	-Wall -Wextra -Werror
 
 include	$(wildcard $(D_FILES))
 
-all:				
-					@ $(MAKE) $(NAME) -j 4
+all:					$(NAME)
 
 $(NAME):			$(OBJS)
 					@ ar rcs $(NAME) $?

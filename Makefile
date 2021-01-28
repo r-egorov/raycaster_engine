@@ -6,7 +6,7 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/01/27 17:32:42 by cisis            ###   ########.fr        #
+#    Updated: 2021/01/28 09:31:01 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ CCFLAGS			=	-Wall -Wextra -Werror
 .c.o:				
 					gcc $(CCFLAGS) -c $< -I $(INCLUDES) -o $(<:.c=.o) -O3
 
-all:				$(NAME)
+all:				
+				$(MAKE) $(NAME) -j 4
 
 lft:				
 					cd $(LIBFTDIR) && make all && make clean

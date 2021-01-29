@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/27 16:07:43 by cisis             #+#    #+#             */
-/*   Updated: 2021/01/29 17:44:44 by cisis            ###   ########.fr       */
+/*   Created: 2021/01/29 16:10:43 by cisis             #+#    #+#             */
+/*   Updated: 2021/01/29 16:20:21 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-int			main(int argc, char **argv)
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	t_parsed	parsed;
-/*	void		*mlx;
+	int		i;
 
-	mlx = mlx_init();
-	mlx_get_screen_size(mlx, &g_screen_width, &g_screen_height);
-*/
-	if (argc == 2)
+	i = 0;
+	while (s1[i] || s2[i])
 	{
-		if (parse_file(argv[1], &parsed) == -1)
-			return (-1);
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
 	}
-
-	printf("height = %d\n", parsed.res_height);
-	printf("width = %d\n", parsed.res_width);
 	return (0);
 }

@@ -6,17 +6,11 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:47:50 by cisis             #+#    #+#             */
-/*   Updated: 2021/01/27 17:57:12 by cisis            ###   ########.fr       */
+/*   Updated: 2021/01/29 17:45:43 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static void		free_str(void *line)
-{
-	if (line)
-		free(line);
-}
 
 static void		print_list(t_list *head) //PRINTF
 {
@@ -52,6 +46,7 @@ static int		init_list(int fd, t_list **head)
 		if ((gnl = get_next_line(fd, &line)) == -1)
 		{
 			free_str(line);
+			ft_lstclear(head, free_str);
 			return (-1);
 		}
 		list_append(head, line);
@@ -60,16 +55,15 @@ static int		init_list(int fd, t_list **head)
 	return (0);
 }
 
-int				parse_file(char *filepath)
+int				parse_file(char *filepath, t_parsed *parsed)
 {
 	int			fd;
 	t_list		*head;
-	t_parsed	*parsed;
 
 	head = NULL;
 	if (((fd = open(filepath, O_RDONLY)) == -1) ||
 		(init_list(fd, &head) == -1) ||
-	 	(validate_list(&parsed, head)) == -1)
+	 	(validate_list(parsed, head)) == -1)
 		return (process_error());
 	print_list(head); //PRINTF
 	ft_lstclear(&head, free_str);

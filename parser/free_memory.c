@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_memory.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/27 16:07:43 by cisis             #+#    #+#             */
-/*   Updated: 2021/01/29 17:44:44 by cisis            ###   ########.fr       */
+/*   Created: 2021/01/29 15:51:37 by cisis             #+#    #+#             */
+/*   Updated: 2021/01/29 15:55:50 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int			main(int argc, char **argv)
+void		free_str(void *line)
 {
-	t_parsed	parsed;
-/*	void		*mlx;
+	if (line)
+		free(line);
+}
 
-	mlx = mlx_init();
-	mlx_get_screen_size(mlx, &g_screen_width, &g_screen_height);
-*/
-	if (argc == 2)
-	{
-		if (parse_file(argv[1], &parsed) == -1)
-			return (-1);
-	}
+void		free_parsed(t_parsed *parsed)
+{
+	char	**map;
 
-	printf("height = %d\n", parsed.res_height);
-	printf("width = %d\n", parsed.res_width);
-	return (0);
+	free_str(parsed->north_texture_path);
+	free_str(parsed->south_texture_path);
+	free_str(parsed->west_texture_path);
+	free_str(parsed->east_texture_path);
+	free_str(parsed->sprite_texture_path);
+	map = parsed->map;
+	while (map)
+		free_str(*map);
 }

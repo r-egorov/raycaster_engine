@@ -11,6 +11,7 @@ SRCS			=	$(SRCSDIR)ft_strlen.c		$(SRCSDIR)ft_memset.c  \
 					$(SRCSDIR)ft_strlcpy.c		$(SRCSDIR)ft_strlcat.c  \
 					$(SRCSDIR)ft_strchr.c		$(SRCSDIR)ft_strrchr.c  \
 					$(SRCSDIR)ft_strncmp.c		$(SRCSDIR)ft_atoi.c  \
+					$(SRCSDIR)ft_strcmp.c \
 					$(SRCSDIR)ft_strnstr.c		$(SRCSDIR)ft_isalpha.c  \
 					$(SRCSDIR)ft_isdigit.c		$(SRCSDIR)ft_isalnum.c  \
 					$(SRCSDIR)ft_isascii.c		$(SRCSDIR)ft_isprint.c  \

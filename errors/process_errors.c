@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:21:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/02 16:02:20 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/02 16:28:18 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*get_error_message(int errcode)
 	msgs[12] = "Invalid resolution value";
 	msgs[13] = "Invalid texture file";
 	msgs[14] = "Invalid number of parameters in textures";
-	msgs[15] = "Invalid F or C colour value";
+	msgs[15] = "Invalid char in F or C colour value";
 	msgs[16] = "Invalid F or C colour values (should be 0 - 255)";
 	msgs[17] = "Invalid number of parameters in colour values";
 	return (msgs[errcode]);

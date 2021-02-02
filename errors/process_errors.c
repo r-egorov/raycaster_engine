@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:21:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/02 13:38:57 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/02 14:31:23 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*get_error_message(int errcode)
 	msgs[2] = "Malloc error";
 	msgs[10] = "Unknown parameter identifier";
 	msgs[11] = "Invalid number of parameters in resolution";
-	msgs[12] = "Invalid char in the resolution";
+	msgs[12] = "Invalid resolution value";
 	msgs[13] = "Invalid texture file";
 	msgs[14] = "Invalid number of parameters in textures";
 	msgs[15] = "Invalid char in F or C colour values";

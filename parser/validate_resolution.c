@@ -6,15 +6,16 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 16:41:32 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/02 13:34:24 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/02 14:30:31 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	validate_number(char *str)
+static int	validate_value(char *str)
 {
 	size_t	i;
+	int		res;
 
 	i = 0;
 	while (str[i])
@@ -23,7 +24,10 @@ static int	validate_number(char *str)
 			return (-1);
 		i++;
 	}
-	return (ft_atoi(str));
+	res = ft_atoi(str);
+	if (res <= 0)
+		return (-1);
+	return (res);
 }
 
 static void	set_height(int parameter_height, t_parsed *parsed)
@@ -52,8 +56,8 @@ void		validate_resolution(char **parameters, t_parsed *parsed)
 		g_errno = 11;
 		return ;
 	}
-	if (((width_param = validate_number(parameters[1])) == -1) ||
-		((height_param = validate_number(parameters[2])) == -1))
+	if (((width_param = validate_value(parameters[1])) == -1) ||
+		((height_param = validate_value(parameters[2])) == -1))
 	{
 		g_errno = 12;
 		return ;

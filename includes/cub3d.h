@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/01/29 17:24:06 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/02 11:46:13 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ int				process_error(void);
 int				validate_list(t_parsed *parsed, t_list *lst);
 int				validate_parameter(void *content, t_parsed *parsed);
 void			validate_resolution(char **parameters, t_parsed *parsed);
+void			validate_texture(char **parameters, t_parsed *parsed, int mode);
 void			free_str(void *line);
+void			free_strs(char **strs);
 void			free_parsed(t_parsed *parsed);
+int				valid_number_params(char **parameters, size_t num_params);
 
 #endif

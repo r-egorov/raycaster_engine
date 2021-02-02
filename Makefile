@@ -6,7 +6,7 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/01/29 18:28:27 by cisis            ###   ########.fr        #
+#    Updated: 2021/02/02 11:47:27 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ ERRDIR			=	./errors/
 
 PARSERSRCS		=	$(PARCERDIR)parse_file.c $(PARCERDIR)validate_list.c \
 					$(PARCERDIR)free_memory.c $(PARCERDIR)validate_parameter.c \
-					$(PARCERDIR)validate_resolution.c
+					$(PARCERDIR)validate_resolution.c $(PARCERDIR)validate_texture.c \
+					$(PARCERDIR)valid_number_params.c
+
 
 MAINSRCS		=	$(MAINDIR)main.c
 
@@ -52,16 +54,17 @@ $(NAME):			$(OBJS)
 					make lft
 					#make mlx
 					gcc $(CCFLAGS) $? -o $(NAME) -L$(LIBFTDIR) -lft \
-						#-L. -lmlx -framework OpenGL -framework Appkit
+						-L. -lmlx -framework OpenGL -framework Appkit
 
 debug:              $(OBJS)
 					make lft
 					#make mlx
 					gcc $(CCFLAGS) -g $? -o $(NAME) -L$(LIBFTDIR) -lft \
-						#-L. -lmlx -framework OpenGL -framework Appkit
+						-L. -lmlx -framework OpenGL -framework Appkit
 
 clean:				
-					rm -f $(OBJS) $(LIBFTDIR)$(LIBFTNAME) $(MLX)
+					rm -f $(OBJS) $(LIBFTDIR)$(LIBFTNAME) 
+					#$(MLX)
 
 fclean:				clean
 					@ rm -f $(NAME)

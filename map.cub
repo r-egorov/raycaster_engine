@@ -1,11 +1,11 @@
 R 1920 1080
 
 
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-S ./path_to_the_sprite_texture
+NO ./textures/texture.png
+SO ./textures/texture.png
+WE ./textures/texture.png
+EA ./textures/texture.png
+S ./textures/texture.png
 
 F 220,100,0
 

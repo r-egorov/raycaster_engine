@@ -6,11 +6,21 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 15:51:37 by cisis             #+#    #+#             */
-/*   Updated: 2021/01/29 15:55:50 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/02 11:59:05 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void		free_strs(char **strs)
+{
+	size_t	i;
+
+	i = 0;
+	while (strs[i])
+		free_str(strs[i++]);
+	free_str(strs);
+}
 
 void		free_str(void *line)
 {

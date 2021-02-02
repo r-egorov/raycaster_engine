@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 17:53:40 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/02 11:03:45 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/02 14:16:06 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ int			validate_list(t_parsed *parsed, t_list *lst)
 			validate_parameter(head->content, parsed);
 		else if (looks_like_map(head->content))
 		{
-		/*	validate_map(head, parsed); */
-			break ;
+		/*	validate_map(&head, parsed); */
 		}
 		else if (is_empty_str(head->content))
 		{
@@ -72,7 +71,7 @@ int			validate_list(t_parsed *parsed, t_list *lst)
 			g_errno = 1;
 		if (g_errno || errno)
 		{
-			//free_parsed(parsed);
+			free_parsed(parsed);
 			return (-1);
 		}
 		head = head->next;

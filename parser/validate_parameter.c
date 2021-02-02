@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 15:58:08 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/02 11:59:09 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/02 13:51:50 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ static int	parameter_valid(char **parameters, t_parsed *parsed)
 		validate_texture(parameters, parsed, 4);
 	else if (ft_strcmp(parameters[0], "S") == 0)
 		validate_texture(parameters, parsed, 5);
-	/*else if (ft_strcmp(parameters[0], "F") == 0)
+	else if (ft_strcmp(parameters[0], "F") == 0)
 		validate_colour(parameters, parsed, 1);
 	else if (ft_strcmp(parameters[0], "C") == 0)
-		validate_colour(parameters, parsed, 2);*/
+		validate_colour(parameters, parsed, 2);
 	else
-		//g_errno = 10; // WILL BE NEEDED WHEN EVERY PARAM DONE
+		g_errno = 10;
 	if (g_errno)
 		return (0);
 	return (1);
@@ -55,7 +55,6 @@ int			validate_parameter(void *content, t_parsed *parsed)
 	int		res;
 
 	line = (char*)content;
-
 	if (!(parameters = ft_split(line, ' ')))
 	{
 		g_errno = 2;

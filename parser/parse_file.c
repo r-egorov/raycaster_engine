@@ -6,22 +6,31 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:47:50 by cisis             #+#    #+#             */
-/*   Updated: 2021/01/27 17:36:43 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/02 14:15:47 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	free_str(void *line)
+static void		init_struct(t_parsed *parsed)
 {
-	if (line)
-		free(line);
+	parsed->res_width = 0;
+	parsed->res_height = 0;
+	parsed->north_texture_path = NULL;
+	parsed->south_texture_path = NULL;
+	parsed->west_texture_path = NULL;
+	parsed->east_texture_path = NULL;
+	parsed->sprite_texture_path = NULL;
+	parsed->floor_colour = 0;
+	parsed->ceiling_colour = 0;
+	parsed->map = NULL;
 }
 
-void		print_list(t_list *head)
+static void		print_list(t_list *head) //PRINTF
 {
-	int i = 0;
+	int			i;
 
+	i = 0;
 	while (head)
 	{
 		printf("%d - %s\n", i, (char*)head->content);
@@ -30,9 +39,9 @@ void		print_list(t_list *head)
 	}
 }
 
-static int	list_append(t_list **head, char *line)
+static int		list_append(t_list **head, char *line)
 {
-	char *line_copy;
+	char		*line_copy;
 
 	if (!(line_copy = ft_strdup(line)))
 		return (-1);
@@ -40,29 +49,38 @@ static int	list_append(t_list **head, char *line)
 	return (0);
 }
 
-int			parse_file(char *filepath)
+static int		init_list(int fd, t_list **head)
 {
-	int		fd;
-	int		gnl;
-	t_list	*head;
-	char	*line;
+	int			gnl;
+	char		*line;
 
-	if ((fd = open(filepath, O_RDONLY)) == -1)
-		return (process_error());
-
-	head = NULL;
 	gnl = 1;
 	while (gnl == 1)
 	{
 		if ((gnl = get_next_line(fd, &line)) == -1)
 		{
 			free_str(line);
-			break ;
+			ft_lstclear(head, free_str);
+			return (-1);
 		}
-		list_append(&head, line);
-		free(line);
+		list_append(head, line);
+		free_str(line);
 	}
-	print_list(head);
+	return (0);
+}
+
+int				parse_file(char *filepath, t_parsed *parsed)
+{
+	int			fd;
+	t_list		*head;
+
+	head = NULL;
+	init_struct(parsed);
+	if (((fd = open(filepath, O_RDONLY)) == -1) ||
+		(init_list(fd, &head) == -1) ||
+		(validate_list(parsed, head)) == -1)
+		return (process_error());
+	print_list(head); //PRINTF
 	ft_lstclear(&head, free_str);
 	return (0);
 }

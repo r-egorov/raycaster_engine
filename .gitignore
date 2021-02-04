@@ -2,4 +2,8 @@
 .git
 cub3D
 .idea
+libmlx.dylib
 tags
+textures/
+cub3D.dSYM/
+libmlx.dylib.dSYM/

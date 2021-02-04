@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 17:53:40 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/02 17:49:25 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/04 13:01:02 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int	looks_like_parameter(void *content)
 {
 	char			c;
 
+	while (*(char*)content == ' ')
+		content++;
 	c = *((char *)content);
 	if ((c == 'R') ||
 		(c == 'N') ||

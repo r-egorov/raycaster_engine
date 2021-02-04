@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:21:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/02 16:28:18 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/04 12:26:44 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*get_error_message(int errcode)
 {
-	char *msgs[20];
+	char *msgs[30];
 
 	msgs[1] = "Invalid parameter in the map file";
 	msgs[2] = "Malloc error";
@@ -26,6 +26,9 @@ static char	*get_error_message(int errcode)
 	msgs[15] = "Invalid char in F or C colour value";
 	msgs[16] = "Invalid F or C colour values (should be 0 - 255)";
 	msgs[17] = "Invalid number of parameters in colour values";
+	msgs[18] = "Invalid char in the map";
+	msgs[19] = "Invalid zero position in the map";
+	msgs[20] = "Invalid space position in the map";
 	return (msgs[errcode]);
 }
 

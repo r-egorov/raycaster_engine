@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:07:43 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/02 17:45:54 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/03 17:40:46 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ int			main(int argc, char **argv)
 
 	mlx = mlx_init();
 	mlx_get_screen_size(mlx, &g_screen_width, &g_screen_height);
-	g_screen_width = 1280;
-	g_screen_height = 720;
 	errno = 0;
 
 	if (argc == 2)
@@ -51,5 +49,6 @@ int			main(int argc, char **argv)
 	printf("F = %d\n", parsed.floor_colour);
 	printf("C = %d\n", parsed.ceiling_colour);
 	print_strs(parsed.map);
+	printf("map_height = %zu\n", parsed.map_height);
 	return (0);
 }

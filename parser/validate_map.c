@@ -6,28 +6,32 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 14:53:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/02 18:30:32 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/04 13:06:38 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static char	**make_map(t_list *head, int lst_size)
+static int	make_map(t_list *head, int lst_size, t_parsed *parsed)
 {
 	char		**map;
 	size_t		i;
 
 	if (!(map = ft_calloc(lst_size + 1, sizeof(char*))))
-		return (NULL);
+		return (-1);
 	i = 0;
 	while (head)
 	{
+		if (*(char*)head->content == '\0')
+			break ;
 		if (!(map[i++] = ft_strdup(head->content)))
-			return (NULL);
+			return (-1);
 		head = head->next;
 	}
 	map[i] = NULL;
-	return (map);
+	parsed->map = map;
+	parsed->map_height = i;
+	return (0);
 }
 
 static int	valid_map(char **map)
@@ -61,19 +65,17 @@ static int	valid_map(char **map)
 void		validate_map(t_list **begin, t_parsed *parsed)
 {
 	t_list		*head;
-	char		**map;
 
 	head = *begin;	
-	if (!(map = make_map(head, ft_lstsize(head))))
+	if ((make_map(head, ft_lstsize(head), parsed)) == -1)
 	{
 		g_errno = 2;
 		return ;
 	}
-	if (!(valid_map(map)))
+	if (!(valid_map(parsed->map)))
 	{
-		free_strs(map);
+		free_strs(parsed->map);
 		return ;
 	}
-	parsed->map = map;
 	*begin = NULL;
 }

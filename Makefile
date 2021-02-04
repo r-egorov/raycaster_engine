@@ -6,7 +6,7 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/02/02 17:40:46 by cisis            ###   ########.fr        #
+#    Updated: 2021/02/03 18:01:18 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ PARSERSRCS		=	$(PARCERDIR)parse_file.c $(PARCERDIR)validate_list.c \
 					$(PARCERDIR)free_memory.c $(PARCERDIR)validate_parameter.c \
 					$(PARCERDIR)validate_resolution.c $(PARCERDIR)validate_texture.c \
 					$(PARCERDIR)valid_number_params.c $(PARCERDIR)validate_colour.c \
-					$(PARCERDIR)validate_map.c
+					$(PARCERDIR)validate_map.c $(PARCERDIR)valid_zero_map.c \
+					$(PARCERDIR)valid_space_map.c
 
 
 MAINSRCS		=	$(MAINDIR)main.c

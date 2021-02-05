@@ -6,7 +6,7 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/02/04 13:27:49 by cisis            ###   ########.fr        #
+#    Updated: 2021/02/05 13:10:08 by cisis            ###   ########.fr        #
 #    Updated: 2021/02/03 18:01:18 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -23,6 +23,7 @@ MLXDIR			=	./minilibx/
 MAINDIR			=	./main/
 PARCERDIR		=	./parser/
 ERRDIR			=	./errors/
+RCSTRDIR		=	./raycaster/
 
 PARSERSRCS		=	$(PARCERDIR)parse_file.c $(PARCERDIR)validate_list.c \
 					$(PARCERDIR)free_memory.c $(PARCERDIR)validate_parameter.c \
@@ -31,19 +32,22 @@ PARSERSRCS		=	$(PARCERDIR)parse_file.c $(PARCERDIR)validate_list.c \
 					$(PARCERDIR)validate_map.c $(PARCERDIR)valid_zero_map.c \
 					$(PARCERDIR)valid_space_map.c
 
+RCSTRSRCS		=	$(RCSTRDIR)drawing_utils.c $(RCSTRDIR)map_draw.c \
+					$(RCSTRDIR)player_draw.c
+
 
 MAINSRCS		=	$(MAINDIR)main.c
 
 ERRSRCS			=	$(ERRDIR)process_errors.c
 
-SRCS			=	$(PARSERSRCS) $(MAINSRCS) $(ERRSRCS)
+SRCS			=	$(PARSERSRCS) $(MAINSRCS) $(ERRSRCS) $(RCSTRSRCS)
 
 OBJS			=	$(patsubst %.c,%.o,$(SRCS))
 
 CCFLAGS			=	-Wall -Wextra -Werror
 
 .c.o:				
-					gcc $(CCFLAGS) -c $< -I $(INCLUDES) -I $(MLXDIR) -o $(<:.c=.o) -O3
+					gcc $(CCFLAGS) -c $< -I $(INCLUDES) -I $(MLXDIR) -o $(<:.c=.o) -O2
 
 all:				
 				$(MAKE) $(NAME) -j 4

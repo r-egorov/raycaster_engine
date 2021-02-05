@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:47:50 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/05 12:10:17 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/05 14:54:18 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,6 @@ static void		init_struct(t_parsed *parsed)
 	parsed->map_height = 0;
 	parsed->map_maxwidth = 0;
 }
-
-/*static void		print_list(t_list *head) //PRINTF
-{
-	int			i;
-
-	i = 0;
-	while (head)
-	{
-		printf("%d - %s\n", i, (char*)head->content);
-		head = head->next;
-		i++;
-	}
-}*/
 
 static int		list_append(t_list **head, char *line)
 {

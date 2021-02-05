@@ -6,7 +6,7 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/02/05 13:10:08 by cisis            ###   ########.fr        #
+#    Updated: 2021/02/05 18:53:04 by cisis            ###   ########.fr        #
 #    Updated: 2021/02/03 18:01:18 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -24,6 +24,7 @@ MAINDIR			=	./main/
 PARCERDIR		=	./parser/
 ERRDIR			=	./errors/
 RCSTRDIR		=	./raycaster/
+HKSDIR			=	./hooks/
 
 PARSERSRCS		=	$(PARCERDIR)parse_file.c $(PARCERDIR)validate_list.c \
 					$(PARCERDIR)free_memory.c $(PARCERDIR)validate_parameter.c \
@@ -33,14 +34,17 @@ PARSERSRCS		=	$(PARCERDIR)parse_file.c $(PARCERDIR)validate_list.c \
 					$(PARCERDIR)valid_space_map.c
 
 RCSTRSRCS		=	$(RCSTRDIR)drawing_utils.c $(RCSTRDIR)map_draw.c \
-					$(RCSTRDIR)player_draw.c
+					$(RCSTRDIR)player_draw.c \
+					$(RCSTRDIR)calculate_plr_pos.c $(RCSTRDIR)raycasting.c
 
+HKSSRCS		=		$(HKSDIR)infinite_hook.c \
+					$(HKSDIR)key_pressed_hook.c
 
-MAINSRCS		=	$(MAINDIR)main.c
+MAINSRCS		=	$(MAINDIR)main.c $(MAINDIR)init_struct.c
 
 ERRSRCS			=	$(ERRDIR)process_errors.c
 
-SRCS			=	$(PARSERSRCS) $(MAINSRCS) $(ERRSRCS) $(RCSTRSRCS)
+SRCS			=	$(PARSERSRCS) $(MAINSRCS) $(ERRSRCS) $(RCSTRSRCS) $(HKSSRCS)
 
 OBJS			=	$(patsubst %.c,%.o,$(SRCS))
 

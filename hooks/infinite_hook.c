@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_draw.c                                      :+:      :+:    :+:   */
+/*   infinite_hook.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/05 13:10:35 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/05 15:44:49 by cisis            ###   ########.fr       */
+/*   Created: 2021/02/05 16:02:12 by cisis             #+#    #+#             */
+/*   Updated: 2021/02/05 17:01:39 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		draw_player(t_all *all, int colour)
+int			infinite_hook(t_all *all)
 {
-	t_point		topleft;
-	int			i;
-	int			j;
-
-	topleft.x = all->plr_pos.x;
-	topleft.y = all->plr_pos.y;
-	i = 0;
-	while (i < 5)
-	{
-		j = 0;
-		while (j < 5)
-		{
-			my_mlx_pixel_put(&(all->window), topleft.x + j, topleft.y + i,
-							colour);
-			j++;
-		}
-		i++;
-	}
+	calculate_plr_pos(all);
+	render_next_frame(all);
+	mlx_put_image_to_window(all->window.mlx,
+			all->window.win, all->window.img, 0, 0);
+	mlx_do_sync(all->window.mlx);
+	return (0);
 }

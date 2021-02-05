@@ -6,30 +6,11 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:47:50 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/05 14:54:18 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/05 17:15:44 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static void		init_struct(t_parsed *parsed)
-{
-	parsed->res_width = 0;
-	parsed->res_height = 0;
-	parsed->north_texture_path = NULL;
-	parsed->south_texture_path = NULL;
-	parsed->west_texture_path = NULL;
-	parsed->east_texture_path = NULL;
-	parsed->sprite_texture_path = NULL;
-	parsed->floor_colour = 0;
-	parsed->ceiling_colour = 0;
-	parsed->map = NULL;
-	parsed->player_pos.x = 0;
-	parsed->player_pos.y = 0;
-	parsed->player_dir = 0;
-	parsed->map_height = 0;
-	parsed->map_maxwidth = 0;
-}
 
 static int		list_append(t_list **head, char *line)
 {
@@ -67,7 +48,6 @@ int				parse_file(char *filepath, t_parsed *parsed)
 	t_list		*head;
 
 	head = NULL;
-	init_struct(parsed);
 	if (((fd = open(filepath, O_RDONLY)) == -1) ||
 		(init_list(fd, &head) == -1) ||
 		(validate_list(parsed, head)) == -1)

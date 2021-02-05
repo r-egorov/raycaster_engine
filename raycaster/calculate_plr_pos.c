@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_draw.c                                      :+:      :+:    :+:   */
+/*   calculate_plr_pos.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/05 13:10:35 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/05 15:44:49 by cisis            ###   ########.fr       */
+/*   Created: 2021/02/05 15:47:51 by cisis             #+#    #+#             */
+/*   Updated: 2021/02/05 18:47:11 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		draw_player(t_all *all, int colour)
+int			calculate_plr_pos(t_all *all)
 {
-	t_point		topleft;
-	int			i;
-	int			j;
-
-	topleft.x = all->plr_pos.x;
-	topleft.y = all->plr_pos.y;
-	i = 0;
-	while (i < 5)
-	{
-		j = 0;
-		while (j < 5)
-		{
-			my_mlx_pixel_put(&(all->window), topleft.x + j, topleft.y + i,
-							colour);
-			j++;
-		}
-		i++;
-	}
+	if (all->keys.s == 1)
+		all->plr_pos.y += 3;
+	if (all->keys.w == 1)
+		all->plr_pos.y -= 3;
+	if (all->keys.a == 1)
+		all->plr_pos.x -= 3;
+	if (all->keys.d == 1)
+		all->plr_pos.x += 3;
+	all->plr_pos.dirx = -1;
+	all->plr_pos.diry = 0;
+	return (0);
 }

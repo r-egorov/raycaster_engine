@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/03 18:05:38 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/05 19:15:48 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,32 @@
 
 # include "libft.h"
 # include <mlx.h>
+# include <math.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <string.h>
 # include <errno.h>
+# define SCALE 30
+# define WHITE 0x00FFFFFF
+# define RED 0x00FF0000
 
 int				g_errno;
 int				g_screen_height;
 int				g_screen_width;
+
+typedef struct	s_point
+{
+	int			x;
+	int			y;
+}				t_point;
+
+typedef struct	s_plr_pos
+{
+	double		x;
+	double		y;
+	double		dirx;
+	double		diry;
+}				t_plr_pos;
 
 typedef struct	s_parsed
 {
@@ -36,9 +54,47 @@ typedef struct	s_parsed
 	int			floor_colour;
 	int			ceiling_colour;
 	char		**map;
+	t_point		player_pos;
+	char		player_dir;
 	size_t		map_height;
+	size_t		map_maxwidth;
 }				t_parsed;
 
+typedef struct	s_win
+{
+	void		*mlx;
+	void		*win;
+	void		*img;
+	void		*addr;
+	int			line_len;
+	int			bpp;
+	int			endian;
+}				t_win;
+
+typedef struct	s_keys
+{
+	int			w;
+	int			a;
+	int			s;
+	int			d;
+}				t_keys;
+
+typedef struct	s_dda
+{
+	int			mapx;
+	int			mapy;
+}				t_dda;
+
+typedef struct	s_all
+{
+	t_parsed	parsed;
+	t_win		window;
+	t_keys		keys;
+	t_plr_pos	plr_pos;
+	t_dda		dda;
+}				t_all;
+
+void			init_struct(t_all *all);
 int				parse_file(char *filepath, t_parsed *parsed);
 int				process_error(void);
 int				validate_list(t_parsed *parsed, t_list *lst);
@@ -54,4 +110,16 @@ void			free_strs(char **strs);
 void			free_parsed(t_parsed *parsed);
 int				valid_number_params(char **parameters, size_t num_params);
 
+void            my_mlx_pixel_put(t_win *win, int x, int y, int color);
+void			draw_map(t_all *all);
+void			draw_player(t_all *all, int colour);
+int				render_next_frame(t_all *all);
+
+int				infinite_hook(t_all *all);
+int				key_pressed_hook(int keycode, t_all *all);
+int				key_released_hook(int keycode, t_all *all);
+
+int				calculate_plr_pos(t_all *all);
+
+int				cast_rays(t_all *all);
 #endif

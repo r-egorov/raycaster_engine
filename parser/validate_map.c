@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 14:53:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/04 13:06:38 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/05 13:01:52 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,62 @@ static int	make_map(t_list *head, int lst_size, t_parsed *parsed)
 	return (0);
 }
 
-static int	valid_map(char **map)
+static int	valid_char_in_map(char c)
 {
-	char **dummy;
-	dummy = map;
-/*	size_t		x;
-	size_t		y;
+	if ((c == '1') ||
+		(c == '0') ||
+		(c == '2') ||
+		(c == ' ') ||
+		(c == 'N') ||
+		(c == 'S') ||
+		(c == 'E') ||
+		(c == 'W'))
+		return (1);
+	g_errno = 18;
+	return (0);
+}
 
+static int	if_player_set(int x, int y, t_parsed *parsed)
+{
+	if (((parsed->map)[y][x] == 'N') ||
+		((parsed->map)[y][x] == 'S') ||
+		((parsed->map)[y][x] == 'E') ||
+		((parsed->map)[y][x] == 'W'))
+	{
+		if (parsed->player_dir)
+		{
+			g_errno = 21;
+			return (-1);
+		}
+		parsed->player_pos.x = x;
+		parsed->player_pos.y = y;
+		parsed->player_dir = (parsed->map)[y][x];
+	}
+	return (0);
+}
+
+static int	valid_map(t_parsed *parsed)
+{
+	size_t		x;
+	size_t		y;
+	char		**map;
+
+	map = parsed->map;
 	y = 0;
 	while (map[y])
 	{
 		x = 0;
 		while (map[y][x])
 		{
-			if (!(valid_char_in_map(map[y][x])))
-				g_errno = 18;
-			else if ((map[y][x] == '0') && (!(valid_zero_in_map(map, x, y))))
-				g_errno = 19;
-			else if ((map[y][x] == ' ') && (!(valid_space_in_map(map, x, y))))
-				g_errno = 20;
-			if (g_errno)
+			if ((!(valid_char_in_map(map[y][x]))) ||
+				((map[y][x] == '0') && (!(valid_zero_map(parsed, x, y)))) ||
+				((map[y][x] == ' ') && (!(valid_space_map(parsed, x, y)))) ||
+				(if_player_set(x, y, parsed)))
 				return (0);
 			x++;
 		}
 		y++;
-	}*/
+	}
 	return (1);
 }
 
@@ -72,10 +103,7 @@ void		validate_map(t_list **begin, t_parsed *parsed)
 		g_errno = 2;
 		return ;
 	}
-	if (!(valid_map(parsed->map)))
-	{
-		free_strs(parsed->map);
-		return ;
-	}
 	*begin = NULL;
+	if (!(valid_map(parsed)))
+		return ;
 }

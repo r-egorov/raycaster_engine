@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:47:50 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/02 14:15:47 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/05 12:10:17 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,14 @@ static void		init_struct(t_parsed *parsed)
 	parsed->floor_colour = 0;
 	parsed->ceiling_colour = 0;
 	parsed->map = NULL;
+	parsed->player_pos.x = 0;
+	parsed->player_pos.y = 0;
+	parsed->player_dir = 0;
+	parsed->map_height = 0;
+	parsed->map_maxwidth = 0;
 }
 
-static void		print_list(t_list *head) //PRINTF
+/*static void		print_list(t_list *head) //PRINTF
 {
 	int			i;
 
@@ -37,7 +42,7 @@ static void		print_list(t_list *head) //PRINTF
 		head = head->next;
 		i++;
 	}
-}
+}*/
 
 static int		list_append(t_list **head, char *line)
 {
@@ -80,7 +85,6 @@ int				parse_file(char *filepath, t_parsed *parsed)
 		(init_list(fd, &head) == -1) ||
 		(validate_list(parsed, head)) == -1)
 		return (process_error());
-	print_list(head); //PRINTF
 	ft_lstclear(&head, free_str);
 	return (0);
 }

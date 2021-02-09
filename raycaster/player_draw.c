@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 13:10:35 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/09 11:25:41 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/09 13:14:36 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void		draw_player(t_all *all, int colour)
 	int			i;
 	int			j;
 
-	topleft.x = all->plr_pos.x * SCALE + SCALE/2 - 2;
-	topleft.y = all->plr_pos.y * SCALE + SCALE/2 - 2;
+	topleft.x = (all->plr_pos.x - 0.5) * SCALE + SCALE/2 - 2;
+	topleft.y = (all->plr_pos.y - 0.5) * SCALE + SCALE/2 - 2;
 	i = 0;
 	while (i < 5)
 	{

@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/05 19:15:48 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/09 18:08:04 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define SCALE 30
 # define WHITE 0x00FFFFFF
 # define RED 0x00FF0000
+# define GREEN 0x0000FF00
+# define PI 3.1415926535
 
 int				g_errno;
 int				g_screen_height;
@@ -34,12 +36,18 @@ typedef struct	s_point
 	int			y;
 }				t_point;
 
+typedef struct	s_vector
+{
+	double		x;
+	double		y;
+}				t_vector;
+
 typedef struct	s_plr_pos
 {
 	double		x;
 	double		y;
-	double		dirx;
-	double		diry;
+	t_vector	dir;
+	t_vector	plane;	
 }				t_plr_pos;
 
 typedef struct	s_parsed
@@ -77,6 +85,8 @@ typedef struct	s_keys
 	int			a;
 	int			s;
 	int			d;
+	int			left;
+	int			right;
 }				t_keys;
 
 typedef struct	s_dda

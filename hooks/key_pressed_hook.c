@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:03:49 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/05 15:48:20 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/09 12:30:52 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ int			key_pressed_hook(int keycode, t_all *all)
 		all->keys.s = 1;
 	else if (keycode == 2)
 		all->keys.d = 1;
+	else if (keycode == 123)
+		all->keys.left = 1;
+	else if (keycode == 124)
+		all->keys.right = 1;
 	return (0);
 }
 
@@ -36,5 +40,9 @@ int			key_released_hook(int keycode, t_all *all)
 		all->keys.s = 0;
 	else if (keycode == 2)
 		all->keys.d = 0;
+	else if (keycode == 123)
+		all->keys.left = 0;
+	else if (keycode == 124)
+		all->keys.right = 0;
 	return (0);
 }

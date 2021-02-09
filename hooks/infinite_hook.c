@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 16:02:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/05 17:01:39 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/09 18:09:23 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int			infinite_hook(t_all *all)
 {
 	calculate_plr_pos(all);
+	//cast_rays(all);
 	render_next_frame(all);
 	mlx_put_image_to_window(all->window.mlx,
 			all->window.win, all->window.img, 0, 0);

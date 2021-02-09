@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 13:38:09 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/05 19:21:19 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/09 18:09:21 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void			draw_frame(t_all *all)
 {
 	draw_map(all);
 	draw_player(all, RED);
-	//cast_rays(all);
+	cast_rays(all);
 }
 
 int				render_next_frame(t_all *all)
@@ -34,6 +34,8 @@ int				render_next_frame(t_all *all)
 
 	window = &(all->window);
 	parsed = &(all->parsed);
+	if (all->window.img)
+		mlx_destroy_image(all->window.mlx, all->window.img);
 	all->window.img = mlx_new_image(all->window.mlx, all->parsed.res_width, 
 			all->parsed.res_height);
 	all->window.addr = mlx_get_data_addr(all->window.img, &(all->window.bpp), 

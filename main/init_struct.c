@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:14:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/05 19:17:46 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/09 16:13:22 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static void		init_plr_pos(t_plr_pos *plr_pos)
 {
 	plr_pos->x = 0;
 	plr_pos->y = 0;
-	plr_pos->dirx = 0;
-	plr_pos->diry = 0;
+	plr_pos->dir.x = 0;
+	plr_pos->dir.y = 0;
 }
 
 static void		init_dda(t_dda *dda)

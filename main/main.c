@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:07:43 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/05 19:21:03 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/09 11:26:04 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int			main(int argc, char **argv)
 	printf("player_pos = [%d, %d]\n", all.parsed.player_pos.x,
 			all.parsed.player_pos.y);
 	//init_player_pos(&all);
-	all.plr_pos.x = all.parsed.player_pos.x * SCALE + SCALE/2 - 2;
-	all.plr_pos.y = all.parsed.player_pos.y * SCALE + SCALE/2 - 2;
+	all.plr_pos.x = all.parsed.player_pos.x;
+	all.plr_pos.y = all.parsed.player_pos.y;
 	printf("x%f\ny%f\n", all.plr_pos.x, all.plr_pos.y);
 	printf("w%d, a%d, s%d, d%d\n", all.keys.w, all.keys.a, all.keys.s, all.keys.d);
 	//all.dda.mapx = all.parsed.player_pos.x;

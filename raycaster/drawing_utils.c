@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 13:38:09 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/09 18:09:21 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/10 11:13:21 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void            my_mlx_pixel_put(t_win *win, int x, int y, int color)
 
 void			draw_frame(t_all *all)
 {
-	draw_map(all);
-	draw_player(all, RED);
+	//draw_map(all);
+	//draw_player(all, RED);
 	cast_rays(all);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:03:54 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/10 11:27:55 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/10 15:09:30 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,44 +111,27 @@ int			cast_rays(t_all *all)
 				side = 1;
 			}
 			if (all->parsed.map[map.y][map.x] == '1')
-			{
 				hit = 1;
-				/*printf("mapx= %f\nmapy = %f\n",
-						(map.x - all->plr_pos.x + (1 - step_x) / 2) + all->plr_pos.x,
-						(map.y - all->plr_pos.y + (1 - step_x) / 2) + all->plr_pos.y);
-						*/
-			}
 		}
 
 		
 		if (side == 0)
-		{
 			perp_wall_dist = (map.x - all->plr_pos.x + (1 - step_x) / 2) / ray.x;
-			/*my_mlx_pixel_put(&(all->window),
-					(int)((map.x - all->plr_pos.x + (1 - step_x) / 2 + all->plr_pos.x) * SCALE),
-					(int)((all->plr_pos.y + ray.y) * SCALE), GREEN);
-					*/
-		}
 		else
-		{
 			perp_wall_dist = (map.y - all->plr_pos.y + (1 - step_y) / 2) / ray.y;
-			//printf("mapy= %f\n", (map.y - all->plr_pos.y + (1 - step_y) / 2) + all->plr_pos.y);
-			/*my_mlx_pixel_put(&(all->window),
-					(int)((all->plr_pos.x + ray.x) * SCALE),
-					(int)((map.y - all->plr_pos.y + (1 - step_y) / 2 + all->plr_pos.y) * SCALE), GREEN);
-					*/
-		}
-		//printf("perp = %f\n", perp_wall_dist);
 
 		//Drawing
 
 		int		line_height;
 
 		line_height = (int)(all->parsed.res_height / perp_wall_dist);
-		//printf("%d\n", line_height);
 		
 		int		draw_start;
 		int		draw_finish;
+
+		int		y;
+		y = 0;
+
 
 		draw_start = -line_height / 2 + all->parsed.res_height / 2;
 		if (draw_start < 0)
@@ -158,14 +141,29 @@ int			cast_rays(t_all *all)
 		if (draw_finish >= all->parsed.res_height)
 			draw_finish = all->parsed.res_height - 1;
 
-		while (draw_start < draw_finish)
+		// Draw ceiling
+		while (y < draw_start)
 		{
 			my_mlx_pixel_put(&(all->window),
-					all->parsed.res_width - x, draw_start, GREEN);
-			draw_start++;
+					all->parsed.res_width - x - 1, y, all->parsed.ceiling_colour);
+			y++;
 		}
 
-		//printf("%d, %d\n", draw_start, draw_finish);
+		// Draw wall
+		while (y < draw_finish)
+		{
+			my_mlx_pixel_put(&(all->window),
+					all->parsed.res_width - x - 1, y, GREEN);
+			y++;
+		}
+
+		//Draw floor
+		while (y < all->parsed.res_height)
+		{
+			my_mlx_pixel_put(&(all->window),
+					all->parsed.res_width - x - 1, y, all->parsed.floor_colour);
+			y++;
+		}
 
 
 		x++;

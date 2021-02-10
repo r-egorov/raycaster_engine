@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:18:10 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/02 13:33:49 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/10 14:52:53 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,5 @@ void		validate_colour(char **parameters, t_parsed *parsed, int mode)
 	}
 	i = 0;
 	validate_rgb(nums_strs, parsed, mode);
+	free_strs(nums_strs);
 }

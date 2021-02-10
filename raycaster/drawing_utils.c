@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 13:38:09 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/10 11:13:21 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/10 15:12:56 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void			draw_frame(t_all *all)
 
 int				render_next_frame(t_all *all)
 {
+	/*
 	t_win		*window;
 	t_parsed	*parsed;
 
@@ -40,6 +41,7 @@ int				render_next_frame(t_all *all)
 			all->parsed.res_height);
 	all->window.addr = mlx_get_data_addr(all->window.img, &(all->window.bpp), 
 			&(all->window.line_len), &(all->window.endian));
+			*/
 	draw_frame(all);
 	return (0);
 }

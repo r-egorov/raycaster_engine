@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:47:51 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/09 18:02:33 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/10 16:09:54 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 int			calculate_plr_pos(t_all *all)
 {
-	t_vector	strafe;
-
-	strafe.x = all->plr_pos.dir.y;
-	strafe.y = all->plr_pos.dir.x * -1;
-
 	if (all->keys.s == 1)
 	{
 		if (all->parsed.map[(int)(all->plr_pos.y)]\
@@ -40,20 +35,20 @@ int			calculate_plr_pos(t_all *all)
 	if (all->keys.a == 1)
 	{
 		if (all->parsed.map[(int)(all->plr_pos.y)]\
-				[(int)(all->plr_pos.x + strafe.x * 0.1)] != '1')
-			all->plr_pos.x += strafe.x * 0.1;
-		if (all->parsed.map[(int)(all->plr_pos.y + strafe.y * 0.1)]\
+				[(int)(all->plr_pos.x + all->plr_pos.plane.x * 0.1)] != '1')
+			all->plr_pos.x += all->plr_pos.plane.x * 0.1;
+		if (all->parsed.map[(int)(all->plr_pos.y + all->plr_pos.plane.y * 0.1)]\
 				[(int)(all->plr_pos.x)] != '1')
-			all->plr_pos.y += strafe.y * 0.1;
+			all->plr_pos.y += all->plr_pos.plane.y * 0.1;
 	}
 	if (all->keys.d == 1)
 	{
 		if (all->parsed.map[(int)(all->plr_pos.y)]\
-				[(int)(all->plr_pos.x - strafe.x * 0.1)] != '1')
-			all->plr_pos.x -= strafe.x * 0.1;
-		if (all->parsed.map[(int)(all->plr_pos.y - strafe.y * 0.1)]\
+				[(int)(all->plr_pos.x - all->plr_pos.plane.x * 0.1)] != '1')
+			all->plr_pos.x -= all->plr_pos.plane.x * 0.1;
+		if (all->parsed.map[(int)(all->plr_pos.y - all->plr_pos.plane.y * 0.1)]\
 				[(int)(all->plr_pos.x)] != '1')
-			all->plr_pos.y -= strafe.y * 0.1;
+			all->plr_pos.y -= all->plr_pos.plane.y * 0.1;
 	}
 	if (all->keys.left == 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:03:54 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/10 15:09:30 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/10 18:42:00 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,60 @@ int			cast_rays(t_all *all)
 		if (draw_finish >= all->parsed.res_height)
 			draw_finish = all->parsed.res_height - 1;
 
+		int		texture_width;
+		int		texture_height;
+
+		texture_width = all->texture.width;
+		texture_height = all->texture.height;
+		double	wall_x;
+
+		if (side == 0)
+			wall_x = all->plr_pos.y + perp_wall_dist * ray.y;
+		else
+			wall_x = all->plr_pos.x + perp_wall_dist * ray.x;
+
+		wall_x -= floor(wall_x);
+
+		int		texture_x;
+
+		texture_x = (int)(wall_x * (double)(texture_width));
+
+		if (side == 0 && ray.x > 0)
+			texture_x = texture_width - texture_x - 1;
+		if (side == 1 && ray.y < 0)
+			texture_x = texture_width - texture_x - 1;
+
+		double	step;
+
+		step = 1.0 * texture_height / line_height;
+		double	texture_pos;
+
+		texture_pos = 1.0 * (draw_start - all->parsed.res_height / 2 + line_height / 2) * step;
+		//printf("textpos = %f\n", texture_pos);
+
+		y = draw_start;
+
+		int		texture_y;
+		unsigned int	colour;
+
+		while (y < draw_finish)
+		{
+			texture_y = (int)texture_pos & (texture_height - 1);
+			texture_pos += step;
+
+			colour = *(unsigned int*)(all->texture.addr +
+					(texture_y * all->texture.line_len + x * (all->texture.bpp / 8)));
+
+			my_mlx_pixel_put(&(all->window),
+					all->parsed.res_width - x - 1, y, colour);
+			
+			//printf("x = %d\ny = %d\ncolour = %d\n", all->parsed.res_width - x - 1, y, colour);
+			y++;
+		}
+
+
+		/*
+
 		// Draw ceiling
 		while (y < draw_start)
 		{
@@ -165,6 +219,7 @@ int			cast_rays(t_all *all)
 			y++;
 		}
 
+		*/
 
 		x++;
 	}

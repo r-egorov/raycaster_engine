@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/09 18:08:04 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/10 18:36:50 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,17 @@ typedef struct	s_parsed
 	size_t		map_maxwidth;
 }				t_parsed;
 
+typedef struct	s_img
+{
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			line_len;
+	int			endian;
+	int			height;
+	int			width;
+}				t_img;
+
 typedef struct	s_win
 {
 	void		*mlx;
@@ -102,6 +113,7 @@ typedef struct	s_all
 	t_keys		keys;
 	t_plr_pos	plr_pos;
 	t_dda		dda;
+	t_img		texture;
 }				t_all;
 
 void			init_struct(t_all *all);

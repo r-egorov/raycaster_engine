@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 13:38:09 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/12 14:01:52 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/12 17:54:22 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,35 @@ void			my_mlx_pixel_put(t_img *img, int x, int y, int color)
 
 void			draw_frame(t_all *all)
 {
-	//draw_map(all);
-	//draw_player(all, RED);
 	cast_rays(all);
+}
+
+void			draw_ceiling(t_all *all, int x, t_ver_line line,
+							unsigned int colour)
+{
+	int		y;
+
+	y = 0;
+	while (y < line.draw_start)
+	{
+		my_mlx_pixel_put(&(all->window.frame), all->parsed.res_width - x - 1, y,
+						colour);
+		y++;
+	}
+}
+
+void			draw_floor(t_all *all, int x, t_ver_line line,
+							unsigned int colour)
+{
+	int		y;
+
+	y = line.draw_finish;
+	while (y < all->parsed.res_height - 1)
+	{
+		my_mlx_pixel_put(&(all->window.frame), all->parsed.res_width - x - 1, y,
+						colour);
+		y++;
+	}
 }
 
 int				render_next_frame(t_all *all)

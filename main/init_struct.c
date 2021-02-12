@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:14:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/12 12:55:49 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/12 15:09:46 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,20 @@ static void		init_plr_pos(t_plr_pos *plr_pos)
 
 static void		init_dda(t_dda *dda)
 {
-	dda->mapx = 0;
-	dda->mapy = 0;
+	dda->camera_x = 0;
+	dda->ray.x = 0;
+	dda->ray.y = 0;
+	dda->map.x = 0;
+	dda->map.y = 0;
+	dda->side_dist.x = 0;
+	dda->side_dist.y = 0;
+	dda->delta_dist.x = 0;
+	dda->delta_dist.y = 0;
+	dda->perp_wall_dist = 0;
+	dda->step_x = 0;
+	dda->step_y = 0;
+	dda->hit = 0;
+	dda->side = 0;
 }
 
 void			init_struct(t_all *all)

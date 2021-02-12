@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/12 13:57:15 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/12 17:50:54 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,20 @@ typedef struct	s_plr_pos
 
 typedef struct	s_parsed
 {
-	int			res_width;
-	int			res_height;
-	char		*north_texture_path;
-	char		*south_texture_path;
-	char		*west_texture_path;
-	char		*east_texture_path;
-	char		*sprite_texture_path;
-	int			floor_colour;
-	int			ceiling_colour;
-	char		**map;
-	t_point		player_pos;
-	char		player_dir;
-	size_t		map_height;
-	size_t		map_maxwidth;
+	int						res_width;
+	int						res_height;
+	char					*north_texture_path;
+	char					*south_texture_path;
+	char					*west_texture_path;
+	char					*east_texture_path;
+	char					*sprite_texture_path;
+	unsigned int			floor_colour;
+	unsigned int			ceiling_colour;
+	char					**map;
+	t_point					player_pos;
+	char					player_dir;
+	size_t					map_height;
+	size_t					map_maxwidth;
 }				t_parsed;
 
 typedef struct	s_img
@@ -98,8 +98,16 @@ typedef struct	s_keys
 
 typedef struct	s_dda
 {
-	int			mapx;
-	int			mapy;
+	double		camera_x;
+	t_vector	ray;
+	t_point		map;
+	t_vector	side_dist;
+	t_vector	delta_dist;
+	double		perp_wall_dist;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
 }				t_dda;
 
 typedef struct	s_txtrs
@@ -120,6 +128,22 @@ typedef struct	s_all
 	t_dda		dda;
 	t_txtrs		txtrs;
 }				t_all;
+
+typedef struct	s_ver_line
+{
+	int			height;
+	int			draw_start;
+	int			draw_finish;
+}				t_ver_line;
+
+typedef struct	s_column
+{
+	t_ver_line	line;
+	double		texture_pos;
+	int			texture_x;
+	int			texture_y;
+	double		step;
+}				t_column;
 
 void			init_struct(t_all *all);
 int				parse_file(char *filepath, t_parsed *parsed);
@@ -143,6 +167,11 @@ void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void			draw_map(t_all *all);
 void			draw_player(t_all *all, int colour);
 int				render_next_frame(t_all *all);
+void			draw_column(int x, t_dda *dda, t_all *all);
+void			draw_ceiling(t_all *all, int x, t_ver_line line,
+							unsigned int colour);
+void			draw_floor(t_all *all, int x, t_ver_line line,
+							unsigned int colour);
 
 int				infinite_hook(t_all *all);
 int				key_pressed_hook(int keycode, t_all *all);

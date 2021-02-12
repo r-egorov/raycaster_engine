@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:03:54 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/10 18:42:00 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/12 12:27:46 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,6 @@ int			cast_rays(t_all *all)
 		int		draw_start;
 		int		draw_finish;
 
-		int		y;
-		y = 0;
 
 
 		draw_start = -line_height / 2 + all->parsed.res_height / 2;
@@ -146,6 +144,7 @@ int			cast_rays(t_all *all)
 
 		texture_width = all->texture.width;
 		texture_height = all->texture.height;
+
 		double	wall_x;
 
 		if (side == 0)
@@ -166,12 +165,14 @@ int			cast_rays(t_all *all)
 
 		double	step;
 
-		step = 1.0 * texture_height / line_height;
+		step = (double)texture_height / (double)line_height;
+
 		double	texture_pos;
 
-		texture_pos = 1.0 * (draw_start - all->parsed.res_height / 2 + line_height / 2) * step;
+		texture_pos = (draw_start - all->parsed.res_height / 2 + line_height / 2) * step;
 		//printf("textpos = %f\n", texture_pos);
 
+		int		y;
 		y = draw_start;
 
 		int		texture_y;
@@ -180,15 +181,17 @@ int			cast_rays(t_all *all)
 		while (y < draw_finish)
 		{
 			texture_y = (int)texture_pos & (texture_height - 1);
-			texture_pos += step;
 
 			colour = *(unsigned int*)(all->texture.addr +
-					(texture_y * all->texture.line_len + x * (all->texture.bpp / 8)));
+					(texture_y * all->texture.line_len + texture_x * (all->texture.bpp / 8)));
+			//printf("line-len = %d\n", all->texture.bpp);
+			//printf("x = %d\ny = %d\ncolour = %d\n", all->parsed.res_width - x - 1, y, colour);
+			//printf("colour = %d\n", colour);
 
 			my_mlx_pixel_put(&(all->window),
 					all->parsed.res_width - x - 1, y, colour);
 			
-			//printf("x = %d\ny = %d\ncolour = %d\n", all->parsed.res_width - x - 1, y, colour);
+			texture_pos += step;
 			y++;
 		}
 

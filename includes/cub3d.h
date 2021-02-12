@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/12 17:50:54 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/12 18:40:24 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define RED 0x00FF0000
 # define GREEN 0x0000FF00
 # define PI 3.1415926535
+# define MOV_SPEED 0.07
+# define ROT_SPEED 0.05
 
 int				g_errno;
 int				g_screen_height;
@@ -178,6 +180,7 @@ int				key_pressed_hook(int keycode, t_all *all);
 int				key_released_hook(int keycode, t_all *all);
 
 int				calculate_plr_pos(t_all *all);
+void			init_player_position(t_all *all);
 
 int				cast_rays(t_all *all);
 #endif

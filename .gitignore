@@ -7,3 +7,4 @@ tags
 textures/
 cub3D.dSYM/
 libmlx.dylib.dSYM/
+*backup*

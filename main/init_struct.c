@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:14:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/09 16:13:22 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/12 12:55:49 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ static void		init_window(t_win *window)
 {
 	window->mlx = NULL;
 	window->win = NULL;
-	window->img = NULL;
-	window->addr = NULL;
-	window->line_len = 0;
-	window->bpp = 0;
-	window->endian = 0;
+	window->frame.img = NULL;
+	window->frame.addr = NULL;
+	window->frame.line_len = 0;
+	window->frame.bpp = 0;
+	window->frame.endian = 0;
 }
 
 static void		init_keys(t_keys *keys)

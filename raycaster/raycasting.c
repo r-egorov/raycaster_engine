@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:03:54 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/12 12:27:46 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/12 13:53:16 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,11 +139,28 @@ int			cast_rays(t_all *all)
 		if (draw_finish >= all->parsed.res_height)
 			draw_finish = all->parsed.res_height - 1;
 
+		t_img	texture;
+
+		if (side == 0)
+		{
+			if (ray.x > 0)
+				texture = all->txtrs.west;
+			else
+				texture = all->txtrs.east;
+		}
+		if (side == 1)
+		{
+			if (ray.y > 0)
+				texture = all->txtrs.north;
+			else
+				texture = all->txtrs.south;
+		}
+
 		int		texture_width;
 		int		texture_height;
 
-		texture_width = all->texture.width;
-		texture_height = all->texture.height;
+		texture_width = texture.width;
+		texture_height = texture.height;
 
 		double	wall_x;
 
@@ -170,7 +187,6 @@ int			cast_rays(t_all *all)
 		double	texture_pos;
 
 		texture_pos = (draw_start - all->parsed.res_height / 2 + line_height / 2) * step;
-		//printf("textpos = %f\n", texture_pos);
 
 		int		y;
 		y = draw_start;
@@ -182,13 +198,10 @@ int			cast_rays(t_all *all)
 		{
 			texture_y = (int)texture_pos & (texture_height - 1);
 
-			colour = *(unsigned int*)(all->texture.addr +
-					(texture_y * all->texture.line_len + texture_x * (all->texture.bpp / 8)));
-			//printf("line-len = %d\n", all->texture.bpp);
-			//printf("x = %d\ny = %d\ncolour = %d\n", all->parsed.res_width - x - 1, y, colour);
-			//printf("colour = %d\n", colour);
+			colour = *(unsigned int*)(texture.addr +
+					(texture_y * texture.line_len + texture_x * (texture.bpp / 8)));
 
-			my_mlx_pixel_put(&(all->window),
+			my_mlx_pixel_put(&(all->window.frame),
 					all->parsed.res_width - x - 1, y, colour);
 			
 			texture_pos += step;

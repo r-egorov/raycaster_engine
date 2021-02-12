@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 13:10:35 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/09 13:14:36 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/12 12:53:47 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		draw_player(t_all *all, int colour)
 		j = 0;
 		while (j < 5)
 		{
-			my_mlx_pixel_put(&(all->window), topleft.x + j, topleft.y + i,
+			my_mlx_pixel_put(&(all->window.frame), topleft.x + j, topleft.y + i,
 							colour);
 			j++;
 		}

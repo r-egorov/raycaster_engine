@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/10 18:36:50 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/12 13:28:20 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,7 @@ typedef struct	s_win
 {
 	void		*mlx;
 	void		*win;
-	void		*img;
-	void		*addr;
-	int			line_len;
-	int			bpp;
-	int			endian;
+	t_img		frame;
 }				t_win;
 
 typedef struct	s_keys
@@ -106,6 +102,15 @@ typedef struct	s_dda
 	int			mapy;
 }				t_dda;
 
+typedef struct	s_txtrs
+{
+	t_img		north;
+	t_img		south;
+	t_img		west;
+	t_img		east;
+	t_img		sprite;
+}				t_txtrs;
+
 typedef struct	s_all
 {
 	t_parsed	parsed;
@@ -113,7 +118,7 @@ typedef struct	s_all
 	t_keys		keys;
 	t_plr_pos	plr_pos;
 	t_dda		dda;
-	t_img		texture;
+	t_txtrs		txtrs;
 }				t_all;
 
 void			init_struct(t_all *all);
@@ -132,7 +137,9 @@ void			free_strs(char **strs);
 void			free_parsed(t_parsed *parsed);
 int				valid_number_params(char **parameters, size_t num_params);
 
-void            my_mlx_pixel_put(t_win *win, int x, int y, int color);
+int				get_textures(t_all *all);
+
+void            my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void			draw_map(t_all *all);
 void			draw_player(t_all *all, int colour);
 int				render_next_frame(t_all *all);

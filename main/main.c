@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:07:43 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/12 11:33:17 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/12 13:44:01 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,7 @@ void		launch_mlx(t_all all)
 {
 	all.window.win = mlx_new_window(all.window.mlx, all.parsed.res_width,
 			all.parsed.res_height, "cub3D_cisis");
-	/*all.window.img = mlx_new_image(all.window.mlx, all.parsed.res_width, 
-			all.parsed.res_height);
-	all.window.addr = mlx_get_data_addr(all.window.img, &(all.window.bpp), 
-			&(all.window.line_len), &(all.window.endian));
-			*/
-	all.texture.img = mlx_png_file_to_image(all.window.mlx, all.parsed.north_texture_path,
-			&all.texture.width, &all.texture.height);
-	all.texture.addr = mlx_get_data_addr(all.texture.img, &(all.texture.bpp),
-			&(all.texture.line_len), &(all.texture.endian));
+	get_textures(&all);
 	mlx_loop_hook(all.window.mlx, infinite_hook, &all);
 	mlx_hook(all.window.win, 2, 1L<<0, key_pressed_hook, &all);
 	mlx_hook(all.window.win, 3, 1L<<1, key_released_hook, &all);

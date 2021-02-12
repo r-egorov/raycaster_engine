@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 13:34:57 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/05 14:52:44 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/12 13:00:38 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		draw_square(int	x, int y, t_win *window, int colour)
 		j = 0;
 		while (j < SCALE - 1)
 		{
-			my_mlx_pixel_put(window, topleft.x + j, topleft.y + i, colour);
+			my_mlx_pixel_put(&(window->frame), topleft.x + j, topleft.y + i, colour);
 			j++;
 		}
 		i++;

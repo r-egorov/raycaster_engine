@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 14:53:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/05 14:26:14 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/12 14:00:00 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void		validate_map(t_list **begin, t_parsed *parsed)
 {
 	t_list		*head;
 
-	head = *begin;	
+	head = *begin;
 	if ((make_map(head, ft_lstsize(head), parsed)) == -1)
 	{
 		g_errno = 2;

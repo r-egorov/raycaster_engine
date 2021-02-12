@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:03:49 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/09 12:30:52 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/12 13:58:02 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int			key_pressed_hook(int keycode, t_all *all)
 
 int			key_released_hook(int keycode, t_all *all)
 {
-
 	if (keycode == 13)
 		all->keys.w = 0;
 	else if (keycode == 0)

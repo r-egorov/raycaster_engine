@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 12:59:25 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/12 13:41:26 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/12 14:02:24 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int		get_texture(t_all *all, int mode)
 	char			*path;
 
 	get_img_and_path(&texture, &path, all, mode);
-	texture->img =  mlx_png_file_to_image(all->window.mlx,
+	texture->img = mlx_png_file_to_image(all->window.mlx,
 			path,
 			&texture->width, &texture->height);
 	if (texture->img == NULL)

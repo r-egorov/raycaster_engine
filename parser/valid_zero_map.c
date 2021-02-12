@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 17:59:52 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/04 12:27:32 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/12 13:59:04 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static int	valid_surroudings(char c)
 		(c == 'W'))
 		return (1);
 	return (0);
-
 }
 
 int			valid_zero_map(t_parsed *parsed, size_t x, size_t y)
@@ -42,7 +41,7 @@ int			valid_zero_map(t_parsed *parsed, size_t x, size_t y)
 		j = -1;
 		while (j < 2)
 		{
-			if ((!((i == 0) && (j == 0))) && 
+			if ((!((i == 0) && (j == 0))) &&
 				(!(valid_surroudings((parsed->map)[y + i][x + j]))))
 				return (0);
 			j++;

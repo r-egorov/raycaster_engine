@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:03:49 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/12 13:58:02 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/16 17:54:33 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int			key_pressed_hook(int keycode, t_all *all)
 		all->keys.left = 1;
 	else if (keycode == 124)
 		all->keys.right = 1;
+	else if (keycode == 53)
+		close_window(all);
 	return (0);
 }
 

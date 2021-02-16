@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/16 15:09:01 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/16 18:03:18 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,4 +203,6 @@ void			init_player_position(t_all *all);
 
 int				cast_rays_wall(t_all *all);
 int				cast_rays_floor_ceiling(t_all *all);
+
+int				close_window(t_all *all);
 #endif

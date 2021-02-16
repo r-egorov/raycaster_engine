@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 13:38:09 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/16 14:49:48 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/16 18:03:05 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,6 @@ void			my_mlx_pixel_put(t_img *img, int x, int y, int color)
 
 	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(unsigned int*)dst = color;
-}
-
-void			draw_frame(t_all *all)
-{
-	if (all->txtrs.floor.img && all->txtrs.ceiling.img)
-		cast_rays_floor_ceiling(all);
-	else
-	{
-		draw_ceiling(all);
-		draw_floor(all);
-	}
-	cast_rays_wall(all);
 }
 
 void			draw_ceiling(t_all *all)
@@ -66,20 +54,13 @@ void			draw_floor(t_all *all)
 
 int				render_next_frame(t_all *all)
 {
-	t_win		*window;
-	t_parsed	*parsed;
-
-	window = &(all->window);
-	parsed = &(all->parsed);
-	if (all->window.frame.img)
-		mlx_destroy_image(all->window.mlx, all->window.frame.img);
-	all->window.frame.img = mlx_new_image(all->window.mlx,
-										all->parsed.res_width,
-										all->parsed.res_height);
-	all->window.frame.addr = mlx_get_data_addr(all->window.frame.img,
-										&(all->window.frame.bpp),
-										&(all->window.frame.line_len),
-										&(all->window.frame.endian));
-	draw_frame(all);
+	if (all->txtrs.floor.img && all->txtrs.ceiling.img)
+		cast_rays_floor_ceiling(all);
+	else
+	{
+		draw_ceiling(all);
+		draw_floor(all);
+	}
+	cast_rays_wall(all);
 	return (0);
 }

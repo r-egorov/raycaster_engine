@@ -6,7 +6,7 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/02/16 12:21:53 by cisis            ###   ########.fr        #
+#    Updated: 2021/02/16 17:55:01 by cisis            ###   ########.fr        #
 #    Updated: 2021/02/03 18:01:18 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -42,7 +42,8 @@ RCSTRSRCS		=	$(RCSTRDIR)drawing_utils.c $(RCSTRDIR)map_draw.c \
 HKSSRCS		=		$(HKSDIR)infinite_hook.c \
 					$(HKSDIR)key_pressed_hook.c
 
-MAINSRCS		=	$(MAINDIR)main.c $(MAINDIR)init_struct.c
+MAINSRCS		=	$(MAINDIR)main.c $(MAINDIR)init_struct.c \
+					$(MAINDIR)close.c
 
 ERRSRCS			=	$(ERRDIR)process_errors.c
 

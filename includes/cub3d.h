@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/12 18:40:24 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/16 15:09:01 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_plr_pos
 {
 	double		x;
 	double		y;
+	double		z;
 	t_vector	dir;
 	t_vector	plane;
 }				t_plr_pos;
@@ -63,6 +64,8 @@ typedef struct	s_parsed
 	char					*sprite_texture_path;
 	unsigned int			floor_colour;
 	unsigned int			ceiling_colour;
+	char					*floor_texture_path;
+	char					*ceiling_texture_path;
 	char					**map;
 	t_point					player_pos;
 	char					player_dir;
@@ -98,6 +101,22 @@ typedef struct	s_keys
 	int			right;
 }				t_keys;
 
+typedef struct	s_dda_floor
+{
+	int			x;
+	int			y;
+	t_vector	ray_0;
+	t_vector	ray_1;
+	int			p;
+	double		row_distance;
+	double		floor_step_x;
+	double		floor_step_y;
+	double		floor_x;
+	double		floor_y;
+	int			cell_x;
+	int			cell_y;
+}				t_dda_floor;
+
 typedef struct	s_dda
 {
 	double		camera_x;
@@ -119,6 +138,8 @@ typedef struct	s_txtrs
 	t_img		west;
 	t_img		east;
 	t_img		sprite;
+	t_img		floor;
+	t_img		ceiling;
 }				t_txtrs;
 
 typedef struct	s_all
@@ -169,11 +190,9 @@ void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void			draw_map(t_all *all);
 void			draw_player(t_all *all, int colour);
 int				render_next_frame(t_all *all);
-void			draw_column(int x, t_dda *dda, t_all *all);
-void			draw_ceiling(t_all *all, int x, t_ver_line line,
-							unsigned int colour);
-void			draw_floor(t_all *all, int x, t_ver_line line,
-							unsigned int colour);
+void			draw_wall(int x, t_dda *dda, t_all *all);
+void			draw_ceiling(t_all *all);
+void			draw_floor(t_all *all);
 
 int				infinite_hook(t_all *all);
 int				key_pressed_hook(int keycode, t_all *all);
@@ -182,5 +201,6 @@ int				key_released_hook(int keycode, t_all *all);
 int				calculate_plr_pos(t_all *all);
 void			init_player_position(t_all *all);
 
-int				cast_rays(t_all *all);
+int				cast_rays_wall(t_all *all);
+int				cast_rays_floor_ceiling(t_all *all);
 #endif

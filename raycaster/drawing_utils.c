@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 13:38:09 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/12 17:54:22 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/16 14:49:48 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,44 @@ void			my_mlx_pixel_put(t_img *img, int x, int y, int color)
 
 void			draw_frame(t_all *all)
 {
-	cast_rays(all);
+	if (all->txtrs.floor.img && all->txtrs.ceiling.img)
+		cast_rays_floor_ceiling(all);
+	else
+	{
+		draw_ceiling(all);
+		draw_floor(all);
+	}
+	cast_rays_wall(all);
 }
 
-void			draw_ceiling(t_all *all, int x, t_ver_line line,
-							unsigned int colour)
+void			draw_ceiling(t_all *all)
 {
 	int		y;
+	int		x;
 
 	y = 0;
-	while (y < line.draw_start)
+	while (y < all->parsed.res_height / 2)
 	{
-		my_mlx_pixel_put(&(all->window.frame), all->parsed.res_width - x - 1, y,
-						colour);
+		x = 0;
+		while (x < all->parsed.res_width)
+			my_mlx_pixel_put(&(all->window.frame), x++, y,
+					all->parsed.ceiling_colour);
 		y++;
 	}
 }
 
-void			draw_floor(t_all *all, int x, t_ver_line line,
-							unsigned int colour)
+void			draw_floor(t_all *all)
 {
 	int		y;
+	int		x;
 
-	y = line.draw_finish;
-	while (y < all->parsed.res_height - 1)
+	y = all->parsed.res_height / 2;
+	while (y < all->parsed.res_height)
 	{
-		my_mlx_pixel_put(&(all->window.frame), all->parsed.res_width - x - 1, y,
-						colour);
+		x = 0;
+		while (x < all->parsed.res_width)
+			my_mlx_pixel_put(&(all->window.frame), x++, y,
+					all->parsed.floor_colour);
 		y++;
 	}
 }

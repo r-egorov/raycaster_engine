@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:30:57 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/12 17:49:29 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/16 14:34:10 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void		draw_texture_column(t_column *column, int x,
 	}
 }
 
-void			draw_column(int x, t_dda *dda, t_all *all)
+void			draw_wall(int x, t_dda *dda, t_all *all)
 {
 	t_img		texture;
 	t_column	column;
@@ -93,7 +93,5 @@ void			draw_column(int x, t_dda *dda, t_all *all)
 	calculate_line_params(dda, all, &column.line);
 	texture = get_texture(dda, all);
 	column.texture_x = calculate_texture_x(dda, all, texture);
-	draw_ceiling(all, x, column.line, all->parsed.ceiling_colour);
-	draw_floor(all, x, column.line, all->parsed.floor_colour);
 	draw_texture_column(&column, x, texture, all);
 }

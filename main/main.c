@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:07:43 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/12 18:29:37 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/16 11:38:20 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int			main(int argc, char **argv)
 	printf("S = %s\n", all.parsed.sprite_texture_path);
 	printf("F = %d\n", all.parsed.floor_colour);
 	printf("C = %d\n", all.parsed.ceiling_colour);
+	printf("FT = %s\n", all.parsed.floor_texture_path);
+	printf("CT = %s\n", all.parsed.ceiling_texture_path);
 	print_strs(all.parsed.map);
 	printf("map_height = %zu\n", all.parsed.map_height);
 	printf("player_dir = %c\n", all.parsed.player_dir);

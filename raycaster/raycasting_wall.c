@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:03:54 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/12 16:35:50 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/16 10:50:52 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	perform_dda(t_dda *dda, t_all *all)
 							+ (1 - dda->step_y) / 2) / dda->ray.y;
 }
 
-int			cast_rays(t_all *all)
+int			cast_rays_wall(t_all *all)
 {
 	t_dda	dda;
 	int		x;
@@ -105,7 +105,7 @@ int			cast_rays(t_all *all)
 		calculate_delta_dist(&dda, all);
 		calculate_side_dist_and_steps(&dda, all);
 		perform_dda(&dda, all);
-		draw_column(x, &dda, all);
+		draw_wall(x, &dda, all);
 		x++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/02/12 18:30:07 by cisis            ###   ########.fr        #
+#    Updated: 2021/02/16 12:21:53 by cisis            ###   ########.fr        #
 #    Updated: 2021/02/03 18:01:18 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -35,8 +35,9 @@ PARSERSRCS		=	$(PARCERDIR)parse_file.c $(PARCERDIR)validate_list.c \
 
 RCSTRSRCS		=	$(RCSTRDIR)drawing_utils.c $(RCSTRDIR)map_draw.c \
 					$(RCSTRDIR)player_draw.c $(RCSTRDIR)init_player.c\
-					$(RCSTRDIR)calculate_plr_pos.c $(RCSTRDIR)raycasting.c \
-					$(RCSTRDIR)get_textures.c $(RCSTRDIR)raycasting_drawing.c 
+					$(RCSTRDIR)calculate_plr_pos.c $(RCSTRDIR)raycasting_wall.c \
+					$(RCSTRDIR)get_textures.c $(RCSTRDIR)raycasting_drawing.c  \
+					$(RCSTRDIR)raycasting_floor_ceiling.c 
 
 HKSSRCS		=		$(HKSDIR)infinite_hook.c \
 					$(HKSDIR)key_pressed_hook.c

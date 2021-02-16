@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 15:51:37 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/10 14:59:17 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/16 11:15:20 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ void		free_strs(char **strs)
 {
 	size_t	i;
 
-	i = 0;
-	while (strs[i])
-		free_str(strs[i++]);
-	free_str(strs);
+	if (strs)
+	{
+		i = 0;
+		while (strs[i])
+			free_str(strs[i++]);
+		free_str(strs);
+		strs = NULL;
+	}
 }
 
 void		free_str(void *line)
@@ -38,6 +42,8 @@ void		free_parsed(t_parsed *parsed)
 	free_str(parsed->west_texture_path);
 	free_str(parsed->east_texture_path);
 	free_str(parsed->sprite_texture_path);
+	free_str(parsed->floor_texture_path);
+	free_str(parsed->ceiling_texture_path);
 	map = parsed->map;
 	free_strs(map);
 }

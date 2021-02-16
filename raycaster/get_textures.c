@@ -6,13 +6,13 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 12:59:25 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/12 14:02:24 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/16 13:05:20 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void		get_img_and_path(t_img **texture, char **path,
+static void		get_wall_texture(t_img **texture, char **path,
 								t_all *all, int mode)
 {
 	if (mode == 0)
@@ -42,20 +42,47 @@ static void		get_img_and_path(t_img **texture, char **path,
 	}
 }
 
+static void		get_floor_ceiling_texture(t_img **texture, char **path,
+										t_all *all, int mode)
+{
+	if (mode == 5)
+	{
+		*texture = &all->txtrs.floor;
+		*path = all->parsed.floor_texture_path;
+	}
+	else if (mode == 6)
+	{
+		*texture = &all->txtrs.ceiling;
+		*path = all->parsed.ceiling_texture_path;
+	}
+}
+
+static void		get_img_and_path(t_img **texture, char **path,
+								t_all *all, int mode)
+{
+	if (mode < 5)
+		get_wall_texture(texture, path, all, mode);
+	else
+		get_floor_ceiling_texture(texture, path, all, mode);
+}
+
 static int		get_texture(t_all *all, int mode)
 {
 	t_img			*texture;
 	char			*path;
 
 	get_img_and_path(&texture, &path, all, mode);
-	texture->img = mlx_png_file_to_image(all->window.mlx,
-			path,
-			&texture->width, &texture->height);
-	if (texture->img == NULL)
-		return (-1);
-	texture->addr = mlx_get_data_addr(texture->img,
-			&(texture->bpp),
-			&(texture->line_len), &(texture->endian));
+	if (path)
+	{
+		texture->img = mlx_png_file_to_image(all->window.mlx,
+				path,
+				&texture->width, &texture->height);
+		if (texture->img == NULL)
+			return (-1);
+		texture->addr = mlx_get_data_addr(texture->img,
+				&(texture->bpp),
+				&(texture->line_len), &(texture->endian));
+	}
 	return (0);
 }
 
@@ -64,7 +91,7 @@ int				get_textures(t_all *all)
 	int		i;
 
 	i = 0;
-	while (i < 5)
+	while (i < 7)
 	{
 		if (get_texture(all, i) == -1)
 			return (-1);

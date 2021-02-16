@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:21:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/04 12:26:44 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/16 11:31:29 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@ static char	*get_error_message(int errcode)
 	msgs[11] = "Invalid number of parameters in resolution";
 	msgs[12] = "Invalid resolution value";
 	msgs[13] = "Invalid texture file";
-	msgs[14] = "Invalid number of parameters in textures";
-	msgs[15] = "Invalid char in F or C colour value";
+	msgs[14] = "Invalid number of parameters in NO, SO, WE or EA textures";
+	msgs[15] = "Invalid char in F or C parameters";
 	msgs[16] = "Invalid F or C colour values (should be 0 - 255)";
-	msgs[17] = "Invalid number of parameters in colour values";
+	msgs[17] = "Invalid number of parameters in the F or C parameters";
 	msgs[18] = "Invalid char in the map";
 	msgs[19] = "Invalid zero position in the map";
 	msgs[20] = "Invalid space position in the map";
+	msgs[21] = "Invalid texture extension (has to be .png)";
+	msgs[22] = "Invalid texture filename (too many dots)";
 	return (msgs[errcode]);
 }
 

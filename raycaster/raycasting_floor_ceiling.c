@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 10:48:18 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/16 15:55:34 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/17 11:27:01 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static void	draw_floor_texture(t_dda_floor *dda_floor, t_all *all)
 	unsigned int	colour;
 
 	tx = (int)(all->txtrs.floor.width
-	* (dda_floor->floor_x - dda_floor->cell_x)) & (all->txtrs.floor.width - 1);
+	* (dda_floor->floor_x - dda_floor->cell_x));
 	ty = (int)(all->txtrs.floor.height
-	* (dda_floor->floor_y - dda_floor->cell_y)) & (all->txtrs.floor.height - 1);
+	* (dda_floor->floor_y - dda_floor->cell_y));
 	colour = *(unsigned int*)(all->txtrs.floor.addr
 			+ (ty * all->txtrs.floor.line_len
 			+ tx * (all->txtrs.floor.bpp / 8)));
@@ -57,11 +57,9 @@ static void	draw_ceiling_texture(t_dda_floor *dda_floor, t_all *all)
 	unsigned int	colour;
 
 	tx = (int)(all->txtrs.ceiling.width
-			* (dda_floor->floor_x - dda_floor->cell_x))
-			& (all->txtrs.ceiling.width - 1);
+			* (dda_floor->floor_x - dda_floor->cell_x));
 	ty = (int)(all->txtrs.ceiling.height
-			* (dda_floor->floor_y - dda_floor->cell_y))
-			& (all->txtrs.ceiling.height - 1);
+			* (dda_floor->floor_y - dda_floor->cell_y));
 	colour = *(unsigned int*)(all->txtrs.ceiling.addr
 			+ (ty * all->txtrs.ceiling.line_len
 			+ tx * (all->txtrs.ceiling.bpp / 8)));

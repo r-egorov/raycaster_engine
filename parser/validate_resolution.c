@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 16:41:32 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/04 13:10:06 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/18 18:37:21 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ static void	set_width(int parameter_width, t_parsed *parsed)
 		parsed->res_width = parameter_width;
 }
 
+static void set_zbuffer(t_parsed *parsed)
+{
+	parsed->zbuffer = (double*)malloc(parsed->res_width * sizeof(double));
+	if (parsed->zbuffer == NULL)
+		g_errno = 2;
+}
+
 void		validate_resolution(char **parameters, t_parsed *parsed)
 {
 	int		height_param;
@@ -64,4 +71,5 @@ void		validate_resolution(char **parameters, t_parsed *parsed)
 	}
 	set_width(width_param, parsed);
 	set_height(height_param, parsed);
+	set_zbuffer(parsed);
 }

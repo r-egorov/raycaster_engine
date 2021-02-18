@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 13:38:09 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/16 18:03:05 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/18 13:25:06 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ int				render_next_frame(t_all *all)
 		draw_floor(all);
 	}
 	cast_rays_wall(all);
+	cast_sprites(all);
 	return (0);
 }

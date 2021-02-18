@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:03:54 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/16 17:44:13 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/18 18:14:05 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int			cast_rays_wall(t_all *all)
 		calculate_delta_dist(&dda, all);
 		calculate_side_dist_and_steps(&dda, all);
 		perform_dda(&dda, all);
+		all->parsed.zbuffer[x] = dda.perp_wall_dist;
 		draw_wall(x, &dda, all);
 		x++;
 	}

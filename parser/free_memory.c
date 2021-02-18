@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 15:51:37 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/16 11:15:20 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/18 18:12:02 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void		free_parsed(t_parsed *parsed)
 {
 	char	**map;
 
+	free_str(parsed->zbuffer);
 	free_str(parsed->north_texture_path);
 	free_str(parsed->south_texture_path);
 	free_str(parsed->west_texture_path);
@@ -44,6 +45,10 @@ void		free_parsed(t_parsed *parsed)
 	free_str(parsed->sprite_texture_path);
 	free_str(parsed->floor_texture_path);
 	free_str(parsed->ceiling_texture_path);
+	free_str(parsed->sprites);
+	free_str(parsed->sprite_order);
+	free_str(parsed->sprite_distance);
+	
 	map = parsed->map;
 	free_strs(map);
 }

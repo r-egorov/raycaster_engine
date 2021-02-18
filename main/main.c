@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:07:43 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/16 17:58:28 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/18 13:24:49 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,17 @@ void		launch_mlx(t_all all)
 	all->plr_pos.y = all->parsed.player_pos.y * SCALE + SCALE/2 - 2;
 }*/
 
+void		print_sprites(t_fpoint *sprites, size_t size)
+{
+	size_t		i = 0;
+
+	while (i < size)
+	{
+		printf("x: %f, y: %f\n", sprites[i].x, sprites[i].y);
+		i++;
+	}
+}
+
 int			main(int argc, char **argv)
 {
 	t_all		all;
@@ -66,6 +77,8 @@ int			main(int argc, char **argv)
 		return (-1);
 	printf("height = %d\n", all.parsed.res_height);
 	printf("width = %d\n", all.parsed.res_width);
+	printf("n_sprites = %d\n", all.parsed.n_sprites);
+	print_sprites(all.parsed.sprites, all.parsed.n_sprites);
 	printf("NO = %s\n", all.parsed.north_texture_path);
 	printf("SO = %s\n", all.parsed.south_texture_path);
 	printf("WE = %s\n", all.parsed.west_texture_path);
@@ -81,18 +94,11 @@ int			main(int argc, char **argv)
 	printf("player_pos = [%d, %d]\n", (int)all.parsed.player_pos.x,
 			(int)all.parsed.player_pos.y);
 	init_player_position(&all);
-/*
-	all.plr_pos.x = all.parsed.player_pos.x + 0.5;
-	all.plr_pos.y = all.parsed.player_pos.y + 0.5;
-
-	// Initialisating values (FIXME need to depend on parsed player)
-	all.plr_pos.dir.x = 1;
-	all.plr_pos.dir.y = 0;
-	all.plr_pos.plane.x = 0;
-	all.plr_pos.plane.y = -0.66;
-*/
 	printf("x%f\ny%f\n", all.plr_pos.x, all.plr_pos.y);
 	printf("w%d, a%d, s%d, d%d\n", all.keys.w, all.keys.a, all.keys.s, all.keys.d);
+
+	//cast_sprites(&all);
+	
 	launch_mlx(all);
 	return (0);
 }

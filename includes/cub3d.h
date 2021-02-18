@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/16 18:03:18 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/18 18:09:56 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ typedef struct	s_point
 	int			y;
 }				t_point;
 
+typedef struct	s_fpoint
+{
+	double		x;
+	double		y;
+}				t_fpoint;
+
 typedef struct	s_vector
 {
 	double		x;
@@ -57,6 +63,12 @@ typedef struct	s_parsed
 {
 	int						res_width;
 	int						res_height;
+	double					*zbuffer;
+	int						n_sprites;
+	t_list					*sprites_list;
+	t_fpoint				*sprites;
+	int						*sprite_order;
+	double					*sprite_distance;
 	char					*north_texture_path;
 	char					*south_texture_path;
 	char					*west_texture_path;
@@ -129,6 +141,7 @@ typedef struct	s_dda
 	int			step_y;
 	int			hit;
 	int			side;
+	double		*zbuffer;
 }				t_dda;
 
 typedef struct	s_txtrs
@@ -183,6 +196,8 @@ void			free_str(void *line);
 void			free_strs(char **strs);
 void			free_parsed(t_parsed *parsed);
 int				valid_number_params(char **parameters, size_t num_params);
+int				append_sprite(t_parsed *parsed, int x, int y);
+void			make_sprite_arrays(t_parsed *parsed);
 
 int				get_textures(t_all *all);
 
@@ -203,6 +218,7 @@ void			init_player_position(t_all *all);
 
 int				cast_rays_wall(t_all *all);
 int				cast_rays_floor_ceiling(t_all *all);
+int				cast_sprites(t_all *all);
 
 int				close_window(t_all *all);
 #endif

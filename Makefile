@@ -6,7 +6,7 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/02/16 17:55:01 by cisis            ###   ########.fr        #
+#    Updated: 2021/02/18 13:08:16 by cisis            ###   ########.fr        #
 #    Updated: 2021/02/03 18:01:18 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -31,13 +31,13 @@ PARSERSRCS		=	$(PARCERDIR)parse_file.c $(PARCERDIR)validate_list.c \
 					$(PARCERDIR)validate_resolution.c $(PARCERDIR)validate_texture.c \
 					$(PARCERDIR)valid_number_params.c $(PARCERDIR)validate_colour.c \
 					$(PARCERDIR)validate_map.c $(PARCERDIR)valid_zero_map.c \
-					$(PARCERDIR)valid_space_map.c
+					$(PARCERDIR)valid_space_map.c $(PARCERDIR)append_sprite.c
 
 RCSTRSRCS		=	$(RCSTRDIR)drawing_utils.c $(RCSTRDIR)map_draw.c \
 					$(RCSTRDIR)player_draw.c $(RCSTRDIR)init_player.c\
 					$(RCSTRDIR)calculate_plr_pos.c $(RCSTRDIR)raycasting_wall.c \
 					$(RCSTRDIR)get_textures.c $(RCSTRDIR)raycasting_drawing.c  \
-					$(RCSTRDIR)raycasting_floor_ceiling.c 
+					$(RCSTRDIR)raycasting_floor_ceiling.c $(RCSTRDIR)raycasting_sprites.c 
 
 HKSSRCS		=		$(HKSDIR)infinite_hook.c \
 					$(HKSDIR)key_pressed_hook.c

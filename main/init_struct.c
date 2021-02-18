@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:14:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/12 15:09:46 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/17 15:47:49 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void		init_parsed(t_parsed *parsed)
 {
 	parsed->res_width = 0;
 	parsed->res_height = 0;
+	parsed->n_sprites = 0;
 	parsed->north_texture_path = NULL;
 	parsed->south_texture_path = NULL;
 	parsed->west_texture_path = NULL;

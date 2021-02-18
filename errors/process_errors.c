@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:21:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/16 11:31:29 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/18 11:04:25 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static char	*get_error_message(int errcode)
 	msgs[20] = "Invalid space position in the map";
 	msgs[21] = "Invalid texture extension (has to be .png)";
 	msgs[22] = "Invalid texture filename (too many dots)";
+	msgs[23] = "Double player position";
 	return (msgs[errcode]);
 }
 

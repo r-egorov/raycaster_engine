@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:23:30 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 18:35:24 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 18:40:52 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	set_floor_ceiling(char *path, int mode, t_parsed *parsed)
 	else if ((mode == 7) &&
 			(parsed->ceiling_texture_path || parsed->ceiling_colour))
 		g_errno = 31;
-	else if (mode== 7)
+	else if (mode == 7)
 		parsed->ceiling_texture_path = path;
 }
 

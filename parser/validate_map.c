@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 14:53:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 18:14:45 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 19:06:29 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ static int	if_player_set(int x, int y, t_parsed *parsed)
 
 static int	valid_map(t_parsed *parsed)
 {
-	size_t		x;
-	size_t		y;
+	int			x;
+	int			y;
 	char		**map;
 
 	map = parsed->map;

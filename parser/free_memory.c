@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 15:51:37 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/18 18:12:02 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 18:39:53 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void		free_parsed(t_parsed *parsed)
 	free_str(parsed->sprites);
 	free_str(parsed->sprite_order);
 	free_str(parsed->sprite_distance);
-	
 	map = parsed->map;
 	free_strs(map);
 }

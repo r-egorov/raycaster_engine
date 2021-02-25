@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 17:53:40 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 18:17:48 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 19:09:57 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	check_for_remainder(t_list *head)
 		if (*((char*)(head->content)) != '\0')
 		{
 			g_errno = 4;
-			return ;	
+			return ;
 		}
 		head = head->next;
 	}
@@ -46,12 +46,11 @@ int			validate_list(t_parsed *parsed, t_list *lst)
 		while (*((char*)(head->content)) == '\0')
 			head = head->next;
 		if (looks_like_map(head->content))
-		{
 			validate_map(&head, parsed);
-			check_for_remainder(head);
-		}
 		else
 			g_errno = 5;
+		if (!g_errno)
+			check_for_remainder(head);
 	}
 	if (g_errno || errno)
 	{

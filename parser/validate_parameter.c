@@ -6,11 +6,23 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 15:58:08 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 17:32:56 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 18:51:20 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	is_png(char *extension)
+{
+	int		i;
+
+	i = ft_strlen(extension);
+	if ((extension[i - 1] == 'g') &&
+		(extension[i - 2] == 'n') &&
+		(extension[i - 3] == 'p'))
+		return (1);
+	return (0);
+}
 
 static int	is_texture(char *path)
 {
@@ -33,10 +45,7 @@ static int	is_texture(char *path)
 		return (0);
 	}
 	extension = splitted[i - 1];
-	i = ft_strlen(extension);
-	if ((extension[i - 1] == 'g') &&
-		(extension[i - 2] == 'n') &&
-		(extension[i - 3] == 'p'))
+	if (is_png(extension))
 		res = 1;
 	else
 		res = 0;
@@ -44,7 +53,8 @@ static int	is_texture(char *path)
 	return (res);
 }
 
-static void	validate_floor_ceiling(char **parameters, t_parsed *parsed, int mode)
+static void	validate_floor_ceiling(char **parameters, t_parsed *parsed,
+		int mode)
 {
 	if (mode == 1)
 	{
@@ -53,7 +63,7 @@ static void	validate_floor_ceiling(char **parameters, t_parsed *parsed, int mode
 		else
 		{
 			if (!(g_errno))
-			validate_colour(parameters, parsed, 1);
+				validate_colour(parameters, parsed, 1);
 		}
 	}
 	else if (mode == 2)
@@ -63,7 +73,7 @@ static void	validate_floor_ceiling(char **parameters, t_parsed *parsed, int mode
 		else
 		{
 			if (!(g_errno))
-			validate_colour(parameters, parsed, 2);
+				validate_colour(parameters, parsed, 2);
 		}
 	}
 }
@@ -94,17 +104,6 @@ static int	parameter_valid(char **parameters, t_parsed *parsed)
 	if (g_errno)
 		return (0);
 	return (1);
-}
-
-// PRINTF
-void		print_strs(char **strs)
-{
-	int i = 0;
-	while (strs[i])
-	{
-		printf("%s\n", strs[i]);
-		i++;
-	}
 }
 
 int			validate_parameters(t_list **begin, t_parsed *parsed)

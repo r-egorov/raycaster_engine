@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 16:41:32 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 18:18:00 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 18:41:05 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	set_width(int parameter_width, t_parsed *parsed)
 		parsed->res_width = parameter_width;
 }
 
-static void set_zbuffer(t_parsed *parsed)
+static void	set_zbuffer(t_parsed *parsed)
 {
 	parsed->zbuffer = (double*)malloc(parsed->res_width * sizeof(double));
 	if (parsed->zbuffer == NULL)

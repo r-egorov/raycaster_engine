@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:32:09 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/18 13:59:35 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 18:40:40 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void		make_sprite_arrays(t_parsed *parsed)
 {
 	int		*sprite_order;
 	double	*sprite_distance;
-	
+
 	if (!(sprite_order = (int*)malloc(sizeof(int) * parsed->n_sprites)))
 	{
 		g_errno = 2;
@@ -27,7 +27,6 @@ void		make_sprite_arrays(t_parsed *parsed)
 		g_errno = 2;
 		return ;
 	}
-
 	parsed->sprite_order = sprite_order;
 	parsed->sprite_distance = sprite_distance;
 }
@@ -59,12 +58,9 @@ int			append_sprite(t_parsed *parsed, int x, int y)
 	}
 	sprite_position.x = x + 0.5;
 	sprite_position.y = y + 0.5;
-
 	new_array[parsed->n_sprites - 1] = sprite_position;
 	copy_arr(new_array, old_array, parsed->n_sprites - 1);
-
 	parsed->sprites = new_array;
 	free(old_array);
-
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 10:48:18 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/17 11:27:01 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 13:10:34 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,24 +70,25 @@ static void	draw_ceiling_texture(t_dda_floor *dda_floor, t_all *all)
 
 int			cast_rays_floor_ceiling(t_all *all)
 {
-	t_dda_floor	dda_floor;
+	t_dda_floor	*dda;
 
-	dda_floor.y = 0;
-	while (dda_floor.y < all->parsed.res_height)
+	dda = &all->dda_floor;
+	dda->y = 0;
+	while (dda->y < all->parsed.res_height)
 	{
-		calculate_vars(all, &dda_floor);
-		dda_floor.x = all->parsed.res_width - 1;
-		while (dda_floor.x >= 0)
+		calculate_vars(all, dda);
+		dda->x = all->parsed.res_width - 1;
+		while (dda->x >= 0)
 		{
-			dda_floor.cell_x = (int)dda_floor.floor_x;
-			dda_floor.cell_y = (int)dda_floor.floor_y;
-			dda_floor.floor_x += dda_floor.floor_step_x;
-			dda_floor.floor_y += dda_floor.floor_step_y;
-			draw_floor_texture(&dda_floor, all);
-			draw_ceiling_texture(&dda_floor, all);
-			dda_floor.x--;
+			dda->cell_x = (int)dda->floor_x;
+			dda->cell_y = (int)dda->floor_y;
+			dda->floor_x += dda->floor_step_x;
+			dda->floor_y += dda->floor_step_y;
+			draw_floor_texture(dda, all);
+			draw_ceiling_texture(dda, all);
+			dda->x--;
 		}
-		dda_floor.y++;
+		dda->y++;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:03:54 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/18 18:14:05 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 16:33:47 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,20 +93,21 @@ static void	perform_dda(t_dda *dda, t_all *all)
 
 int			cast_rays_wall(t_all *all)
 {
-	t_dda	dda;
+	t_dda	*dda;
 	int		x;
 
+	dda = &all->dda_walls;
 	x = 0;
 	while (x < all->parsed.res_width)
 	{
-		dda.camera_x = 2 * x / (double)all->parsed.res_width - 1;
-		dda.ray.x = all->plr_pos.dir.x + all->plr_pos.plane.x * dda.camera_x;
-		dda.ray.y = all->plr_pos.dir.y + all->plr_pos.plane.y * dda.camera_x;
-		calculate_delta_dist(&dda, all);
-		calculate_side_dist_and_steps(&dda, all);
-		perform_dda(&dda, all);
-		all->parsed.zbuffer[x] = dda.perp_wall_dist;
-		draw_wall(x, &dda, all);
+		dda->camera_x = 2 * x / (double)all->parsed.res_width - 1;
+		dda->ray.x = all->plr_pos.dir.x + all->plr_pos.plane.x * dda->camera_x;
+		dda->ray.y = all->plr_pos.dir.y + all->plr_pos.plane.y * dda->camera_x;
+		calculate_delta_dist(dda, all);
+		calculate_side_dist_and_steps(dda, all);
+		perform_dda(dda, all);
+		all->parsed.zbuffer[x] = dda->perp_wall_dist;
+		draw_wall(x, dda, all);
 		x++;
 	}
 	return (0);

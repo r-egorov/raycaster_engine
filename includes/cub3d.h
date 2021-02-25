@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/18 18:09:56 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 15:52:44 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,19 @@ typedef struct	s_keys
 	int			right;
 }				t_keys;
 
+typedef struct	s_dda_sprite
+{
+	double		transform_x;
+	double		transform_y;
+	int			sprite_screen_x;
+	int			sprite_height;
+	int			sprite_width;
+	int			draw_start_x;
+	int			draw_start_y;
+	int			draw_end_x;
+	int			draw_end_y;
+}				t_dda_sprite;
+
 typedef struct	s_dda_floor
 {
 	int			x;
@@ -157,12 +170,15 @@ typedef struct	s_txtrs
 
 typedef struct	s_all
 {
-	t_parsed	parsed;
-	t_win		window;
-	t_keys		keys;
-	t_plr_pos	plr_pos;
-	t_dda		dda;
-	t_txtrs		txtrs;
+	t_parsed		parsed;
+	t_win			window;
+	t_keys			keys;
+	t_plr_pos		plr_pos;
+	t_dda			dda;
+	t_txtrs			txtrs;
+	t_dda			dda_walls;
+	t_dda_floor		dda_floor;
+	t_dda_sprite	dda_sprite;
 }				t_all;
 
 typedef struct	s_ver_line
@@ -219,6 +235,7 @@ void			init_player_position(t_all *all);
 int				cast_rays_wall(t_all *all);
 int				cast_rays_floor_ceiling(t_all *all);
 int				cast_sprites(t_all *all);
+void			draw_sprite(t_all *all, t_dda_sprite *dda);
 
 int				close_window(t_all *all);
 #endif

@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:14:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/17 15:47:49 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 16:11:47 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,12 @@ static void		init_parsed(t_parsed *parsed)
 {
 	parsed->res_width = 0;
 	parsed->res_height = 0;
+	parsed->zbuffer = NULL;
 	parsed->n_sprites = 0;
+	parsed->sprites_list = NULL;
+	parsed->sprites = NULL;
+	parsed->sprite_order = NULL;
+	parsed->sprite_distance = NULL;
 	parsed->north_texture_path = NULL;
 	parsed->south_texture_path = NULL;
 	parsed->west_texture_path = NULL;
@@ -24,6 +29,8 @@ static void		init_parsed(t_parsed *parsed)
 	parsed->sprite_texture_path = NULL;
 	parsed->floor_colour = 0;
 	parsed->ceiling_colour = 0;
+	parsed->floor_texture_path = NULL;
+	parsed->ceiling_texture_path = NULL;
 	parsed->map = NULL;
 	parsed->player_pos.x = 0;
 	parsed->player_pos.y = 0;

@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:47:50 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/16 11:08:10 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 16:35:59 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,17 @@ static int		init_list(int fd, t_list **head)
 int				parse_file(char *filepath, t_parsed *parsed)
 {
 	int			fd;
+	int			res;
 	t_list		*head;
 
+	res = 0;
 	head = NULL;
 	if (((fd = open(filepath, O_RDONLY)) == -1) ||
 		(init_list(fd, &head) == -1) ||
 		(validate_list(parsed, head)) == -1)
-		return (process_error());
+		res = -1;
 	ft_lstclear(&head, free_str);
-	return (0);
+	if (res == -1)
+		return (process_error());
+	return (res);
 }

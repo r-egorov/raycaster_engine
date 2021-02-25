@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:30:57 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/17 11:02:48 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 16:33:35 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void		draw_texture_column(t_column *column, int x,
 	y = column->line.draw_start;
 	while (y < column->line.draw_finish)
 	{
-		column->texture_y = (int)column->texture_pos;
+		column->texture_y = (int)column->texture_pos & (texture.height - 1);
 		colour = *(unsigned int*)(texture.addr
 				+ (column->texture_y * texture.line_len
 				+ column->texture_x * (texture.bpp / 8)));

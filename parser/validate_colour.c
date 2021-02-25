@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:18:10 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/10 14:52:53 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 18:37:44 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,13 @@ static void	validate_rgb(char **nums_strs, t_parsed *parsed, int mode)
 	}
 	rgb = 0;
 	rgb = (r << 16 | g << 8 | b);
-	if (mode == 1)
+	if ((mode == 1) && (parsed->floor_texture_path || parsed->floor_colour))
+		g_errno = 30;
+	else if (mode == 1)
 		parsed->floor_colour = rgb;
+	else if ((mode == 2) &&
+			(parsed->ceiling_texture_path || parsed->ceiling_colour))
+		g_errno = 31;
 	else if (mode == 2)
 		parsed->ceiling_colour = rgb;
 }

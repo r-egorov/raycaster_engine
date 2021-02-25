@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 15:52:44 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 16:49:55 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ void			init_struct(t_all *all);
 int				parse_file(char *filepath, t_parsed *parsed);
 int				process_error(void);
 int				validate_list(t_parsed *parsed, t_list *lst);
-int				validate_parameter(void *content, t_parsed *parsed);
+int				validate_parameters(t_list **head, t_parsed *parsed);
 void			validate_resolution(char **parameters, t_parsed *parsed);
 void			validate_texture(char **parameters, t_parsed *parsed, int mode);
 void			validate_colour(char **parameters, t_parsed *parsed, int mode);

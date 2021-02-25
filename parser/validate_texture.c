@@ -6,28 +6,49 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:23:30 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/16 11:04:56 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 18:35:24 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	set_path(char *path, int mode, t_parsed *parsed)
+static void	set_floor_ceiling(char *path, int mode, t_parsed *parsed)
 {
-	if (mode == 1)
-		parsed->north_texture_path = path;
-	else if (mode == 2)
-		parsed->south_texture_path = path;
-	else if (mode == 3)
-		parsed->west_texture_path = path;
-	else if (mode == 4)
-		parsed->east_texture_path = path;
-	else if (mode == 5)
-		parsed->sprite_texture_path = path;
+	if ((mode == 6) && (parsed->floor_texture_path || parsed->floor_colour))
+		g_errno = 30;
 	else if (mode == 6)
 		parsed->floor_texture_path = path;
-	else if (mode == 7)
+	else if ((mode == 7) &&
+			(parsed->ceiling_texture_path || parsed->ceiling_colour))
+		g_errno = 31;
+	else if (mode== 7)
 		parsed->ceiling_texture_path = path;
+}
+
+static void	set_path(char *path, int mode, t_parsed *parsed)
+{
+	if ((mode == 1) && (parsed->north_texture_path))
+		g_errno = 25;
+	else if (mode == 1)
+		parsed->north_texture_path = path;
+	else if ((mode == 2) && (parsed->south_texture_path))
+		g_errno = 26;
+	else if (mode == 2)
+		parsed->south_texture_path = path;
+	else if ((mode == 3) && (parsed->west_texture_path))
+		g_errno = 27;
+	else if (mode == 3)
+		parsed->west_texture_path = path;
+	else if ((mode == 4) && (parsed->east_texture_path))
+		g_errno = 28;
+	else if (mode == 4)
+		parsed->east_texture_path = path;
+	else if ((mode == 5) && (parsed->sprite_texture_path))
+		g_errno = 29;
+	else if (mode == 5)
+		parsed->sprite_texture_path = path;
+	else
+		set_floor_ceiling(path, mode, parsed);
 }
 
 static int	is_png(char *path)

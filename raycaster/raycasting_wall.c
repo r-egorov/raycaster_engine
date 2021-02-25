@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:03:54 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 16:33:47 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 17:29:34 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int			cast_rays_wall(t_all *all)
 	t_dda	*dda;
 	int		x;
 
-	dda = &all->dda_walls;
+	dda = &(all->dda_walls);
 	x = 0;
 	while (x < all->parsed.res_width)
 	{

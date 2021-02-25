@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 16:41:32 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/18 18:37:21 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 18:18:00 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ void		validate_resolution(char **parameters, t_parsed *parsed)
 	int		height_param;
 	int		width_param;
 
+	if (parsed->res_height || parsed->res_width)
+	{
+		g_errno = 24;
+		return ;
+	}
 	if (!(valid_number_params(parameters, 3)))
 	{
 		g_errno = 11;

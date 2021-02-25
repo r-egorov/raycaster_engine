@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:21:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/18 11:04:25 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 18:34:32 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,35 @@
 
 static char	*get_error_message(int errcode)
 {
-	char *msgs[30];
+	char *msgs[40];
 
-	msgs[1] = "Invalid parameter in the map file";
+	msgs[1] = "Not a .cub file";
 	msgs[2] = "Malloc error";
+	msgs[3] = "Ivalid order of parameters, map must be the last";
+	msgs[4] = "Nothing must appear in the file after the map";
+	msgs[5] = "Redundant parameter before the map";
 	msgs[10] = "Unknown parameter identifier";
-	msgs[11] = "Invalid number of parameters in resolution";
+	msgs[11] = "Invalid number of arguments in the R parameter";
 	msgs[12] = "Invalid resolution value";
 	msgs[13] = "Invalid texture file";
-	msgs[14] = "Invalid number of parameters in NO, SO, WE or EA textures";
+	msgs[14] = "Invalid number of arguments in the NO, SO, WE or EA parameters";
 	msgs[15] = "Invalid char in F or C parameters";
 	msgs[16] = "Invalid F or C colour values (should be 0 - 255)";
-	msgs[17] = "Invalid number of parameters in the F or C parameters";
+	msgs[17] = "Invalid number of arguments in the F or C parameters";
 	msgs[18] = "Invalid char in the map";
 	msgs[19] = "Invalid zero position in the map";
 	msgs[20] = "Invalid space position in the map";
 	msgs[21] = "Invalid texture extension (has to be .png)";
 	msgs[22] = "Invalid texture filename (too many dots)";
 	msgs[23] = "Double player position";
+	msgs[24] = "Double R parameter";
+	msgs[25] = "Double NO parameter";
+	msgs[26] = "Double SO parameter";
+	msgs[27] = "Double WE parameter";
+	msgs[28] = "Double EA parameter";
+	msgs[29] = "Double S parameter";
+	msgs[30] = "Double F parameter";
+	msgs[31] = "Double C parameter";
 	return (msgs[errcode]);
 }
 

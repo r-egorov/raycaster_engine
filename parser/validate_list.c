@@ -6,47 +6,31 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 17:53:40 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/16 11:15:31 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 18:17:48 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	check_for_remainder(t_list *head)
+{
+	while (head)
+	{
+		if (*((char*)(head->content)) != '\0')
+		{
+			g_errno = 4;
+			return ;	
+		}
+		head = head->next;
+	}
+}
+
 static int	looks_like_map(void *content)
 {
 	char			c;
 
-	c = *((char *)content);
+	c = *((char*)content);
 	if ((c == '1') || (c == ' '))
-		return (1);
-	return (0);
-}
-
-static int	looks_like_parameter(void *content)
-{
-	char			c;
-
-	while (*(char*)content == ' ')
-		content++;
-	c = *((char *)content);
-	if ((c == 'R') ||
-		(c == 'N') ||
-		(c == 'S') ||
-		(c == 'W') ||
-		(c == 'E') ||
-		(c == 'S') ||
-		(c == 'F') ||
-		(c == 'C'))
-		return (1);
-	return (0);
-}
-
-static int	is_empty_str(void *content)
-{
-	char			c;
-
-	c = *((char *)content);
-	if (c == '\0')
 		return (1);
 	return (0);
 }
@@ -56,26 +40,23 @@ int			validate_list(t_parsed *parsed, t_list *lst)
 	t_list			*head;
 
 	head = lst;
-	while (head)
+	validate_parameters(&head, parsed);
+	if (!g_errno)
 	{
-		if (looks_like_parameter(head->content))
-			validate_parameter(head->content, parsed);
-		else if (looks_like_map(head->content))
-			validate_map(&head, parsed);
-		else if (is_empty_str(head->content))
-		{
+		while (*((char*)(head->content)) == '\0')
 			head = head->next;
-			continue ;
+		if (looks_like_map(head->content))
+		{
+			validate_map(&head, parsed);
+			check_for_remainder(head);
 		}
 		else
-			g_errno = 1;
-		if (g_errno || errno)
-		{
-			free_parsed(parsed);
-			return (-1);
-		}
-		if (head)
-			head = head->next;
+			g_errno = 5;
+	}
+	if (g_errno || errno)
+	{
+		free_parsed(parsed);
+		return (-1);
 	}
 	return (0);
 }

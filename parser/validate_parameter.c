@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 15:58:08 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/16 11:44:40 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 17:32:56 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,9 @@ static int	parameter_valid(char **parameters, t_parsed *parsed)
 		validate_floor_ceiling(parameters, parsed, 1);
 	else if (ft_strcmp(parameters[0], "C") == 0)
 		validate_floor_ceiling(parameters, parsed, 2);
+	else if (parameters[0][0] == '1' ||
+			parameters[0][0] == '0')
+		g_errno = 3;
 	else
 		g_errno = 10;
 	if (g_errno)
@@ -104,22 +107,31 @@ void		print_strs(char **strs)
 	}
 }
 
-int			validate_parameter(void *content, t_parsed *parsed)
+int			validate_parameters(t_list **begin, t_parsed *parsed)
 {
 	char	*line;
 	char	**parameters;
 	int		res;
+	int		n_params;
+	t_list	*head;
 
-	line = (char*)content;
-	if (!(parameters = ft_split(line, ' ')))
+	res = 0;
+	n_params = 0;
+	head = *begin;
+	while (head && n_params < 8)
 	{
-		g_errno = 2;
-		return (-1);
+		line = (char*)head->content;
+		if (!(line[0] == '\0'))
+		{
+			if (!(parameters = ft_split(line, ' ')))
+				g_errno = 2;
+			if (g_errno || !(parameter_valid(parameters, parsed)))
+				res = -1;
+			free_strs(parameters);
+			n_params += 1;
+		}
+		head = head->next;
 	}
-	if (parameter_valid(parameters, parsed))
-		res = 0;
-	else
-		res = -1;
-	free_strs(parameters);
+	*begin = head;
 	return (res);
 }

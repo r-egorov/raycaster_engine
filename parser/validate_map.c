@@ -6,17 +6,19 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 14:53:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/18 13:57:49 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 18:14:45 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	make_map(t_list *head, int lst_size, t_parsed *parsed)
+static int	make_map(t_list **begin, int lst_size, t_parsed *parsed)
 {
 	char		**map;
 	size_t		i;
+	t_list		*head;
 
+	head = *begin;
 	if (!(map = ft_calloc(lst_size + 1, sizeof(char*))))
 		return (-1);
 	i = 0;
@@ -31,6 +33,7 @@ static int	make_map(t_list *head, int lst_size, t_parsed *parsed)
 	map[i] = NULL;
 	parsed->map = map;
 	parsed->map_height = i;
+	*begin = head;
 	return (0);
 }
 
@@ -102,13 +105,13 @@ void		validate_map(t_list **begin, t_parsed *parsed)
 	t_list		*head;
 
 	head = *begin;
-	if ((make_map(head, ft_lstsize(head), parsed)) == -1)
+	if ((make_map(&head, ft_lstsize(head), parsed)) == -1)
 	{
 		g_errno = 2;
 		return ;
 	}
-	*begin = NULL;
 	if (!(valid_map(parsed)))
 		return ;
+	*begin = head;
 	make_sprite_arrays(parsed);
 }

@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:47:50 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 16:35:59 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 17:42:21 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,20 @@ static int		init_list(int fd, t_list **head)
 	return (0);
 }
 
+static int		is_cub(char *filepath)
+{
+	size_t		last;
+
+	last = ft_strlen(filepath) - 1;
+	if (filepath[last] == 'b' &&
+		filepath[last - 1] == 'u' &&
+		filepath[last - 2] == 'c' &&
+		filepath[last - 3] == '.')
+		return (1);
+	g_errno = 1;
+	return (0);
+}
+
 int				parse_file(char *filepath, t_parsed *parsed)
 {
 	int			fd;
@@ -50,7 +64,8 @@ int				parse_file(char *filepath, t_parsed *parsed)
 
 	res = 0;
 	head = NULL;
-	if (((fd = open(filepath, O_RDONLY)) == -1) ||
+	if ((!(is_cub(filepath))) ||
+		((fd = open(filepath, O_RDONLY)) == -1) ||
 		(init_list(fd, &head) == -1) ||
 		(validate_list(parsed, head)) == -1)
 		res = -1;

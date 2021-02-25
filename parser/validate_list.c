@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 17:53:40 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 19:09:57 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 20:07:09 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,17 @@ int			validate_list(t_parsed *parsed, t_list *lst)
 	validate_parameters(&head, parsed);
 	if (!g_errno)
 	{
-		while (*((char*)(head->content)) == '\0')
+		while (head && (*((char*)(head->content)) == '\0'))
 			head = head->next;
-		if (looks_like_map(head->content))
+		if (head == NULL)
+			g_errno = 7;
+		if ((!g_errno) && (looks_like_map(head->content)))
 			validate_map(&head, parsed);
 		else
-			g_errno = 5;
+		{
+			if (!g_errno)
+				g_errno = 5;
+		}
 		if (!g_errno)
 			check_for_remainder(head);
 	}

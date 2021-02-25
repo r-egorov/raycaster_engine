@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:21:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 19:13:58 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/25 20:06:02 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static char	*get_error_message(int errcode)
 	msgs[4] = "Nothing must appear in the file after the map";
 	msgs[5] = "Redundant parameter before the map";
 	msgs[6] = "Invalid map";
+	msgs[7] = "No map";
 	msgs[10] = "Unknown parameter identifier";
 	msgs[11] = "Invalid number of arguments in the R parameter";
 	msgs[12] = "Invalid resolution value";

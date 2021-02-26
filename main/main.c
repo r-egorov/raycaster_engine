@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:07:43 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/26 12:36:16 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/26 13:16:45 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,16 @@ static void	launch_mlx(t_all *all)
 	mlx_loop(all->window.mlx);
 }
 
+static int	valid_floor_ceiling(t_parsed *parsed)
+{
+	if ((parsed->floor_colour && parsed->ceiling_colour) ||
+		(parsed->floor_texture_path && parsed->ceiling_texture_path))
+		return (1);
+	g_errno = 8;
+	process_error();
+	return (0);
+}
+
 int			main(int argc, char **argv)
 {
 	t_all		all;
@@ -45,7 +55,8 @@ int			main(int argc, char **argv)
 	all.window.mlx = mlx_init();
 	mlx_get_screen_size(all.window.mlx, &g_screen_width, &g_screen_height);
 	errno = 0;
-	if (parse_file(argv[1], &(all.parsed)) == -1)
+	if ((parse_file(argv[1], &(all.parsed)) == -1) ||
+		!(valid_floor_ceiling(&(all.parsed))))
 		return (-1);
 	init_player_position(&all);
 	launch_mlx(&all);

@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:21:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/26 11:56:00 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/26 12:32:41 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	*get_error_message(int errcode)
 
 	msgs[1] = "Not a .cub file";
 	msgs[2] = "Malloc error";
-	msgs[3] = "Ivalid order of parameters, map must be the last";
+	msgs[3] = "Map not last or some parameter missing";
 	msgs[4] = "Nothing must appear in the file after the map";
 	msgs[5] = "Redundant parameter before the map";
 	msgs[6] = "Invalid map";

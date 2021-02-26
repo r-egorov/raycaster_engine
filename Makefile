@@ -6,7 +6,7 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/02/26 11:42:05 by cisis            ###   ########.fr        #
+#    Updated: 2021/02/26 16:18:53 by cisis            ###   ########.fr        #
 #    Updated: 2021/02/03 18:01:18 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -44,7 +44,7 @@ HKSSRCS		=		$(HKSDIR)infinite_hook.c \
 
 MAINSRCS		=	$(MAINDIR)main.c $(MAINDIR)init_struct.c \
 					$(MAINDIR)close.c $(MAINDIR)init_txtrs.c \
-					$(MAINDIR)init_dda.c
+					$(MAINDIR)init_dda.c $(MAINDIR)make_screenshot.c
 
 ERRSRCS			=	$(ERRDIR)process_errors.c
 

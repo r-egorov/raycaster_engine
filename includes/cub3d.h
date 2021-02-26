@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/26 11:41:13 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/26 16:19:46 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ typedef struct	s_txtrs
 
 typedef struct	s_all
 {
+	int				save;
 	t_parsed		parsed;
 	t_win			window;
 	t_keys			keys;
@@ -239,5 +240,6 @@ int				cast_rays_floor_ceiling(t_all *all);
 int				cast_sprites(t_all *all);
 void			draw_sprite(t_all *all, t_dda_sprite *dda);
 
+int				make_screenshot(t_all *all);
 int				close_window(t_all *all);
 #endif

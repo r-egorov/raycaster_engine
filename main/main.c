@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:07:43 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/26 13:16:45 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/26 15:03:44 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,36 @@ static int	valid_floor_ceiling(t_parsed *parsed)
 	return (0);
 }
 
+static int	valid_args(int argc, char **argv, t_all *all)
+{
+	if (argc == 2)
+	{
+		all->save = 0;
+		return (1);
+	}
+	if (argc == 3)
+	{
+		if (ft_strcmp(argv[2], "--save") != 0)
+		{
+			g_errno = 9;
+			process_error();
+			return (0);
+		}
+		all->save = 1;
+		return (1);
+	}
+	g_errno = 32;
+	process_error();
+	return (0);
+}
+
 int			main(int argc, char **argv)
 {
 	t_all		all;
 
-	if (argc != 2)
-		return (-1);
 	init_struct(&all);
+	if (!(valid_args(argc, argv, &all)))
+		return (-1);
 	all.window.mlx = mlx_init();
 	mlx_get_screen_size(all.window.mlx, &g_screen_width, &g_screen_height);
 	errno = 0;

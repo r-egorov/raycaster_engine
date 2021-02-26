@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:14:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/26 11:57:07 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/26 14:58:26 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static void		init_plr_pos(t_plr_pos *plr_pos)
 
 void			init_struct(t_all *all)
 {
+	all->save = 0;
 	init_parsed(&(all->parsed));
 	init_window(&(all->window));
 	init_keys(&(all->keys));

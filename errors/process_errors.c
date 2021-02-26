@@ -6,27 +6,17 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:21:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 20:06:02 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/26 11:56:00 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static char	*get_error_message(int errcode)
+static void	fill_msgs(char *(*arr)[40])
 {
-	char *msgs[40];
+	char **msgs;
 
-	msgs[1] = "Not a .cub file";
-	msgs[2] = "Malloc error";
-	msgs[3] = "Ivalid order of parameters, map must be the last";
-	msgs[4] = "Nothing must appear in the file after the map";
-	msgs[5] = "Redundant parameter before the map";
-	msgs[6] = "Invalid map";
-	msgs[7] = "No map";
-	msgs[10] = "Unknown parameter identifier";
-	msgs[11] = "Invalid number of arguments in the R parameter";
-	msgs[12] = "Invalid resolution value";
-	msgs[13] = "Invalid texture file";
+	msgs = *arr;
 	msgs[14] = "Invalid number of arguments in the NO, SO, WE or EA parameters";
 	msgs[15] = "Invalid char in F or C parameters";
 	msgs[16] = "Invalid F or C colour values (should be 0 - 255)";
@@ -45,6 +35,24 @@ static char	*get_error_message(int errcode)
 	msgs[29] = "Double S parameter";
 	msgs[30] = "Double F parameter";
 	msgs[31] = "Double C parameter";
+}
+
+static char	*get_error_message(int errcode)
+{
+	char *msgs[40];
+
+	msgs[1] = "Not a .cub file";
+	msgs[2] = "Malloc error";
+	msgs[3] = "Ivalid order of parameters, map must be the last";
+	msgs[4] = "Nothing must appear in the file after the map";
+	msgs[5] = "Redundant parameter before the map";
+	msgs[6] = "Invalid map";
+	msgs[7] = "No map";
+	msgs[10] = "Unknown parameter identifier";
+	msgs[11] = "Invalid number of arguments in the R parameter";
+	msgs[12] = "Invalid resolution value";
+	msgs[13] = "Invalid texture file";
+	fill_msgs(&msgs);
 	return (msgs[errcode]);
 }
 

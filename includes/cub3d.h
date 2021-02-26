@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 18:56:25 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/26 11:41:13 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ typedef struct	s_dda_floor
 	int			cell_y;
 }				t_dda_floor;
 
-typedef struct	s_dda
+typedef struct	s_dda_wall
 {
 	double		camera_x;
 	t_vector	ray;
@@ -155,7 +155,7 @@ typedef struct	s_dda
 	int			hit;
 	int			side;
 	double		*zbuffer;
-}				t_dda;
+}				t_dda_wall;
 
 typedef struct	s_txtrs
 {
@@ -174,9 +174,8 @@ typedef struct	s_all
 	t_win			window;
 	t_keys			keys;
 	t_plr_pos		plr_pos;
-	t_dda			dda;
 	t_txtrs			txtrs;
-	t_dda			dda_walls;
+	t_dda_wall		dda_walls;
 	t_dda_floor		dda_floor;
 	t_dda_sprite	dda_sprite;
 }				t_all;
@@ -198,6 +197,9 @@ typedef struct	s_column
 }				t_column;
 
 void			init_struct(t_all *all);
+void			init_dda(t_all *all);
+void			init_txtrs(t_txtrs *txtrs);
+
 int				parse_file(char *filepath, t_parsed *parsed);
 int				process_error(void);
 int				validate_list(t_parsed *parsed, t_list *lst);
@@ -221,7 +223,7 @@ void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void			draw_map(t_all *all);
 void			draw_player(t_all *all, int colour);
 int				render_next_frame(t_all *all);
-void			draw_wall(int x, t_dda *dda, t_all *all);
+void			draw_wall(int x, t_dda_wall *dda, t_all *all);
 void			draw_ceiling(t_all *all);
 void			draw_floor(t_all *all);
 

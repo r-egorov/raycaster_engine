@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:07:43 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/18 13:24:49 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/26 11:19:40 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@ static void print_strs(char **strs) // PRINTF
 		{
 			printf("%s\n", strs[i++]);
 		}
+	}
+}
+
+void		print_sprites(t_fpoint *sprites, size_t size)
+{
+	size_t		i = 0;
+
+	while (i < size)
+	{
+		printf("x: %f, y: %f\n", sprites[i].x, sprites[i].y);
+		i++;
 	}
 }
 
@@ -41,23 +52,6 @@ void		launch_mlx(t_all all)
 	mlx_hook(all.window.win, 3, 1L<<1, key_released_hook, &all);
 	mlx_hook(all.window.win, 17, 1L<<17, close_window, &all);
 	mlx_loop(all.window.mlx);
-}
-
-/*void		init_player_pos(t_all *all)
-{
-	all->plr_pos.x = all->parsed.player_pos.x * SCALE + SCALE/2 - 2;
-	all->plr_pos.y = all->parsed.player_pos.y * SCALE + SCALE/2 - 2;
-}*/
-
-void		print_sprites(t_fpoint *sprites, size_t size)
-{
-	size_t		i = 0;
-
-	while (i < size)
-	{
-		printf("x: %f, y: %f\n", sprites[i].x, sprites[i].y);
-		i++;
-	}
 }
 
 int			main(int argc, char **argv)

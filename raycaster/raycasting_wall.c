@@ -6,13 +6,13 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:03:54 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 17:29:34 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/26 11:24:22 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	calculate_delta_dist(t_dda *dda, t_all *all)
+static void	calculate_delta_dist(t_dda_wall *dda, t_all *all)
 {
 	dda->map.x = (int)all->plr_pos.x;
 	dda->map.y = (int)all->plr_pos.y;
@@ -36,7 +36,7 @@ static void	calculate_delta_dist(t_dda *dda, t_all *all)
 	}
 }
 
-static void	calculate_side_dist_and_steps(t_dda *dda, t_all *all)
+static void	calculate_side_dist_and_steps(t_dda_wall *dda, t_all *all)
 {
 	if (dda->ray.x < 0)
 	{
@@ -63,7 +63,7 @@ static void	calculate_side_dist_and_steps(t_dda *dda, t_all *all)
 	}
 }
 
-static void	perform_dda(t_dda *dda, t_all *all)
+static void	perform_dda(t_dda_wall *dda, t_all *all)
 {
 	dda->hit = 0;
 	while (dda->hit == 0)
@@ -93,8 +93,8 @@ static void	perform_dda(t_dda *dda, t_all *all)
 
 int			cast_rays_wall(t_all *all)
 {
-	t_dda	*dda;
-	int		x;
+	t_dda_wall	*dda;
+	int			x;
 
 	dda = &(all->dda_walls);
 	x = 0;

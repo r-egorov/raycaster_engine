@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close.c                                            :+:      :+:    :+:   */
+/*   init_txtrs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/16 17:51:04 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/26 11:41:33 by cisis            ###   ########.fr       */
+/*   Created: 2021/02/26 11:39:37 by cisis             #+#    #+#             */
+/*   Updated: 2021/02/26 11:40:31 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int			close_window(t_all *all)
+static void	init_img(t_img *img)
 {
-	free_parsed(&all->parsed);
-	if (all->window.frame.img)
-		mlx_destroy_image(all->window.mlx, all->window.frame.img);
-	mlx_destroy_window(all->window.mlx, all->window.win);
-	exit(0);
-	return (0);
+	img->img = NULL;
+	img->addr = NULL;
+	img->bpp = 0;
+	img->line_len = 0;
+	img->endian = 0;
+	img->height = 0;
+	img->width = 0;
+}
+
+void		init_txtrs(t_txtrs *txtrs)
+{
+	init_img(&(txtrs->north));
+	init_img(&(txtrs->south));
+	init_img(&(txtrs->west));
+	init_img(&(txtrs->east));
+	init_img(&(txtrs->sprite));
+	init_img(&(txtrs->floor));
+	init_img(&(txtrs->ceiling));
 }

@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:14:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 16:11:47 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/26 11:45:36 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,32 +56,19 @@ static void		init_keys(t_keys *keys)
 	keys->a = 0;
 	keys->s = 0;
 	keys->d = 0;
+	keys->left = 0;
+	keys->right = 0;
 }
 
 static void		init_plr_pos(t_plr_pos *plr_pos)
 {
 	plr_pos->x = 0;
 	plr_pos->y = 0;
+	plr_pos->z = 0;
 	plr_pos->dir.x = 0;
 	plr_pos->dir.y = 0;
-}
-
-static void		init_dda(t_dda *dda)
-{
-	dda->camera_x = 0;
-	dda->ray.x = 0;
-	dda->ray.y = 0;
-	dda->map.x = 0;
-	dda->map.y = 0;
-	dda->side_dist.x = 0;
-	dda->side_dist.y = 0;
-	dda->delta_dist.x = 0;
-	dda->delta_dist.y = 0;
-	dda->perp_wall_dist = 0;
-	dda->step_x = 0;
-	dda->step_y = 0;
-	dda->hit = 0;
-	dda->side = 0;
+	plr_pos->plane.x = 0;
+	plr_pos->plane.y = 0;
 }
 
 void			init_struct(t_all *all)
@@ -90,5 +77,6 @@ void			init_struct(t_all *all)
 	init_window(&(all->window));
 	init_keys(&(all->keys));
 	init_plr_pos(&(all->plr_pos));
-	init_dda(&(all->dda));
+	init_dda(all);
+	init_txtrs(&(all->txtrs));
 }

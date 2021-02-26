@@ -6,13 +6,13 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:30:57 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 16:33:35 by cisis            ###   ########.fr       */
+/*   Updated: 2021/02/26 11:27:23 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_img			get_texture(t_dda *dda, t_all *all)
+t_img			get_texture(t_dda_wall *dda, t_all *all)
 {
 	t_img		texture;
 
@@ -33,7 +33,8 @@ t_img			get_texture(t_dda *dda, t_all *all)
 	return (texture);
 }
 
-static void		calculate_line_params(t_dda *dda, t_all *all, t_ver_line *line)
+static void		calculate_line_params(t_dda_wall *dda, t_all *all,
+		t_ver_line *line)
 {
 	line->height = (int)(all->parsed.res_height / dda->perp_wall_dist);
 	line->draw_start = -line->height / 2 + all->parsed.res_height / 2;
@@ -44,7 +45,7 @@ static void		calculate_line_params(t_dda *dda, t_all *all, t_ver_line *line)
 		line->draw_finish = all->parsed.res_height - 1;
 }
 
-static int		calculate_texture_x(t_dda *dda, t_all *all, t_img texture)
+static int		calculate_texture_x(t_dda_wall *dda, t_all *all, t_img texture)
 {
 	double	wall_x;
 	int		texture_x;
@@ -85,7 +86,7 @@ static void		draw_texture_column(t_column *column, int x,
 	}
 }
 
-void			draw_wall(int x, t_dda *dda, t_all *all)
+void			draw_wall(int x, t_dda_wall *dda, t_all *all)
 {
 	t_img		texture;
 	t_column	column;

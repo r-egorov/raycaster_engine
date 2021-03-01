@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:07:43 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/26 15:03:44 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/01 16:25:02 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 static void	launch_mlx(t_all *all)
 {
-	all->window.win = mlx_new_window(all->window.mlx, all->parsed.res_width,
-			all->parsed.res_height, "cub3D_cisis");
-	if (all->window.win == NULL)
-		return ;
 	get_textures(all);
 	all->window.frame.img = mlx_new_image(all->window.mlx,
 										all->parsed.res_width,
@@ -28,11 +24,20 @@ static void	launch_mlx(t_all *all)
 										&(all->window.frame.bpp),
 										&(all->window.frame.line_len),
 										&(all->window.frame.endian));
-	mlx_loop_hook(all->window.mlx, infinite_hook, all);
-	mlx_hook(all->window.win, 2, 1L << 0, key_pressed_hook, all);
-	mlx_hook(all->window.win, 3, 1L << 1, key_released_hook, all);
-	mlx_hook(all->window.win, 17, 1L << 17, close_window, all);
-	mlx_loop(all->window.mlx);
+	if (all->save == 1)
+		infinite_hook(all);
+	else
+	{
+		all->window.win = mlx_new_window(all->window.mlx, all->parsed.res_width,
+				all->parsed.res_height, "cub3D_cisis");
+		if (all->window.win == NULL)
+			return ;
+		mlx_loop_hook(all->window.mlx, infinite_hook, all);
+		mlx_hook(all->window.win, 2, 1L << 0, key_pressed_hook, all);
+		mlx_hook(all->window.win, 3, 1L << 1, key_released_hook, all);
+		mlx_hook(all->window.win, 17, 1L << 17, close_window, all);
+		mlx_loop(all->window.mlx);
+	}
 }
 
 static int	valid_floor_ceiling(t_parsed *parsed)

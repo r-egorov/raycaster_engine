@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 15:11:29 by cisis             #+#    #+#             */
-/*   Updated: 2021/03/01 10:40:07 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/01 10:51:11 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	make_bmp(int fd, t_all *all, int padding)
 	int					x;
 	int					colour;
 
-	y = all->parsed.res_height;
+	y = all->parsed.res_height - 1;
 	while (y >= 0)
 	{
 		x = 0;
@@ -70,9 +70,9 @@ static int	make_bmp(int fd, t_all *all, int padding)
 			if (write(fd, &colour, 3) < 0)
 				return (-1);
 			x++;
-			if (padding > 0 && write(fd, &zero, padding) < 0)
-				return (-1);
 		}
+		if (padding > 0 && write(fd, &zero, padding) < 0)
+			return (-1);
 		y--;
 	}
 	return (0);

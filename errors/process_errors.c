@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:21:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/26 15:06:20 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/01 16:30:14 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static char	*get_error_message(int errcode)
 	msgs[6] = "Invalid map";
 	msgs[7] = "No map";
 	msgs[8] = "F and C should be either colours or textures";
-	msgs[9] = "Uknown flag as the second argument, should be `--save`";
+	msgs[9] = "Unknown flag as the second argument, should be `--save`";
 	msgs[10] = "Unknown parameter identifier";
 	msgs[11] = "Invalid number of arguments in the R parameter";
 	msgs[12] = "Invalid resolution value";

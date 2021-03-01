@@ -8,3 +8,5 @@ textures/
 cub3D.dSYM/
 libmlx.dylib.dSYM/
 *backup*
+*.cub
+screenshot.bmp

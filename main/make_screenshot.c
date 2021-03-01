@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 15:11:29 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/26 16:47:49 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/01 10:40:07 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	make_header(int fd, int bmpsize, t_all *all)
 	header[14] = (unsigned char)(40);
 	int_to_char(header + 18, all->parsed.res_width);
 	int_to_char(header + 22, all->parsed.res_height);
-	header[27] = (unsigned char)(1);
+	header[26] = (unsigned char)(1);
 	header[28] = (unsigned char)(24);
 	if (write(fd, header, 54) < 0)
 		return (-1);
@@ -70,9 +70,9 @@ static int	make_bmp(int fd, t_all *all, int padding)
 			if (write(fd, &colour, 3) < 0)
 				return (-1);
 			x++;
+			if (padding > 0 && write(fd, &zero, padding) < 0)
+				return (-1);
 		}
-		if (padding > 0 && write(fd, &zero, padding) < 0)
-			return (-1);
 		y--;
 	}
 	return (0);

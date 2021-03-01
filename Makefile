@@ -6,18 +6,19 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/02/26 16:18:53 by cisis            ###   ########.fr        #
+#    Updated: 2021/03/01 12:01:33 by cisis            ###   ########.fr        #
 #    Updated: 2021/02/03 18:01:18 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	cub3D
-LIBFTNAME		=	libft.a
 MLX				=	libmlx.dylib	
 
 INCLUDES		=	./includes/
 
 LIBFTDIR		=	./libft/
+LIBFT			=	$(LIBFTDIR)libft.a
+
 MLXDIR			=	./minilibx/
 
 MAINDIR			=	./main/
@@ -52,39 +53,48 @@ SRCS			=	$(PARSERSRCS) $(MAINSRCS) $(ERRSRCS) $(RCSTRSRCS) $(HKSSRCS)
 
 OBJS			=	$(patsubst %.c,%.o,$(SRCS))
 
+DFILES			=	$(patsubst %.c,%.d,$(SRCS))
+
 CCFLAGS			=	-Wall -Wextra -Werror
 
 .c.o:				
-					gcc $(CCFLAGS) -c $< -I $(INCLUDES) -I $(MLXDIR) -o $(<:.c=.o) -O2
+					@ gcc $(CCFLAGS) -c -MD $< -I $(INCLUDES) -I $(MLXDIR) -o $(<:.c=.o) -O2
 
-all:				
-				$(MAKE) $(NAME) -j 4
+include $(wildcard $(D_FILES))
 
-lft:				
-					cd $(LIBFTDIR) && make all && make clean
+all:				$(NAME)
 
-mlx:
-					cd $(MLXDIR) && make && mv $(MLX) .. && make clean
+$(LIBFT):
+					@ echo "Compiling libft..."
+					@ $(MAKE) -C $(LIBFTDIR)
+					@ $(MAKE) clean -C $(LIBFTDIR)
+					@ echo "Libft compiled"
+					
+$(MLX):
+					@ echo "Compiling minilibx..."
+					@ $(MAKE) -C $(MLXDIR)
+					@ mv $(MLXDIR)$(MLX) .
+					@ $(MAKE) clean -C $(MLXDIR)
+					@ echo "Minilibx compiled"
 
-$(NAME):			$(OBJS)
-					make lft
-					#make mlx
-					gcc $(CCFLAGS) $? -o $(NAME) -L$(LIBFTDIR) -lft \
+$(NAME):			$(LIBFT) $(MLX) $(OBJS)
+					@ echo "Compiling cub3D..."
+					@ gcc $(CCFLAGS) $(OBJS) -o $(NAME) -L$(LIBFTDIR) -lft \
 						-L. -lmlx -framework OpenGL -framework Appkit -ggdb -fsanitize=address -fno-omit-frame-pointer
+					@ echo "cub3D compiled"
 
-debug:              $(OBJS)
-					make lft
-					#make mlx
-					gcc $(CCFLAGS) -g $? -o $(NAME) -L$(LIBFTDIR) -lft \
+debug:				$(LIBFT) $(MLX) $(OBJS)
+					@ gcc -g $(CCFLAGS) $(OBJS) -o $(NAME) -L$(LIBFTDIR) -lft \
 						-L. -lmlx -framework OpenGL -framework Appkit -ggdb -fsanitize=address -fno-omit-frame-pointer
 
 clean:				
-					rm -f $(OBJS) $(LIBFTDIR)$(LIBFTNAME) 
+					@ rm -f $(DFILES) $(OBJS) $(LIBFT) 
+					@ echo "Deleted dependencies"
 
 fclean:				clean
-					@ rm -f $(NAME) 
-					#$(MLX)
+					@ rm -f $(NAME) $(MLX)
+					@ echo "Deleted executable and dynamic library"
 
 re:					fclean all
 
-.PHONY:				all clean fclean re
+.PHONY:				all clean fclean re debug

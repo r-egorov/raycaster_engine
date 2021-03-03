@@ -6,26 +6,27 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/03/03 14:40:31 by cisis            ###   ########.fr        #
+#    Updated: 2021/03/03 14:58:20 by cisis            ###   ########.fr        #
 #    Updated: 2021/02/03 18:01:18 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	cub3D
 
-INCLUDES		=	./includes/
+INCLUDES		=	includes/
 
-LIBFTDIR		=	./libft/
+LIBFTDIR		=	libft/
 LIBFT			=	$(LIBFTDIR)libft.a
 
-MLXDIR			=	./minilibx/
+MLXDIR			=	minilibx/
 MLX				=	$(MLXDIR)libmlx.a
 
-MAINDIR			=	./main/
-PARCERDIR		=	./parser/
-ERRDIR			=	./errors/
-RCSTRDIR		=	./raycaster/
-HKSDIR			=	./hooks/
+MAINDIR			=	main/
+PARCERDIR		=	parser/
+ERRDIR			=	errors/
+RCSTRDIR		=	raycaster/
+HKSDIR			=	hooks/
+SRCSDIR			=	srcs/
 
 PARSERSRCS		=	$(PARCERDIR)parse_file.c $(PARCERDIR)validate_list.c \
 					$(PARCERDIR)free_memory.c $(PARCERDIR)validate_parameter.c \
@@ -50,6 +51,8 @@ MAINSRCS		=	$(MAINDIR)main.c $(MAINDIR)init_struct.c \
 ERRSRCS			=	$(ERRDIR)process_errors.c
 
 SRCS			=	$(PARSERSRCS) $(MAINSRCS) $(ERRSRCS) $(RCSTRSRCS) $(HKSSRCS)
+
+SRCS 			:=	$(addprefix $(SRCSDIR), $(SRCS))
 
 OBJS			=	$(patsubst %.c,%.o,$(SRCS))
 

@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/03/03 13:04:02 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/03 15:02:38 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define MOV_SPEED 0.1
 # define ROT_SPEED 0.05
 # define SCREEN_HEIGHT 1440
-# define SCREEN_WIDTH 2560 
+# define SCREEN_WIDTH 2560
 
 int				g_errno;
 int				g_screen_height;

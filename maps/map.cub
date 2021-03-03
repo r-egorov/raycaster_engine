@@ -1,16 +1,17 @@
-R 1240 720
+R 1280 720
 
 
-         NO ./textures/bluestone.png
-   SO ./textures/colorstone.png
-  WE ./textures/purplestone.png
-EA ./textures/redbrick.png
-S ./textures/barrel.png
+         NO ./textures/eagle.xpm
+   SO ./textures/colorstone.xpm
+  WE ./textures/purplestone.xpm
+EA ./textures/redbrick.xpm
+S ./textures/greenlight.xpm
 
-F ./textures/wood.png
+F ./textures/wood.xpm
 
-C ./textures/greystone.png
+C ./textures/greystone.xpm
 
+C ./textures/greystone.xpm
 
         1111111111111111111111111
         1000000000110000000000001

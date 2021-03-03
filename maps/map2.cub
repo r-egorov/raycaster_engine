@@ -1,15 +1,15 @@
-R 1920 1080
+R 10000 120000
 
 
-         NO ./textures/bluestone.png
-   SO ./textures/colorstone.png
-  WE ./textures/purplestone.png
-EA ./textures/redbrick.png
-S ./textures/barrel.png
+         NO ./textures/eagle.xpm
+   SO ./textures/colorstone.xpm
+  WE ./textures/purplestone.xpm
+EA ./textures/redbrick.xpm
+S ./textures/greenlight.xpm
 
-F ./textures/wood.png
+F ./textures/wood.xpm
 
-C ./textures/greystone.png
+C ./textures/greystone.xpm
 
 
         1111111111111111111111111
@@ -22,9 +22,11 @@ C ./textures/greystone.png
 11110111111111011101010010001
 11000000110101011100000010001
 10002000000200001100200010201
-1000000000000W001101010010001
-110000011101010111110111100011
+10000000000000001101010010001
+11000001110101011111011110N0111
 11110111 1110101 101111010001
 11111111 1111111 111111111111
+
+
 
 

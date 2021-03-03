@@ -6,7 +6,7 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/03/03 14:58:20 by cisis            ###   ########.fr        #
+#    Updated: 2021/03/03 15:08:35 by cisis            ###   ########.fr        #
 #    Updated: 2021/02/03 18:01:18 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -68,30 +68,30 @@ include $(wildcard $(D_FILES))
 all:				$(NAME)
 
 $(LIBFT):
-					@ echo "Compiling libft..."
+					@ echo " >>> Compiling libft... <<< "
 					@ $(MAKE) -C $(LIBFTDIR)
 					@ $(MAKE) clean -C $(LIBFTDIR)
-					@ echo "Libft compiled"
+					@ echo " >>> Libft compiled <<< "
 					
 $(MLX):
-					@ echo "Compiling minilibx..."
+					@ echo " >>> Compiling minilibx... <<< "
 					@ $(MAKE) -C $(MLXDIR)
-					@ echo "Minilibx compiled"
+					@ echo " >>> Minilibx compiled <<< "
 
 $(NAME):			$(LIBFT) $(MLX) $(OBJS)
-					@ echo "Compiling cub3D..."
+					@ echo " >>> Compiling cub3D... <<< "
 					@ gcc $(CCFLAGS) $(OBJS) -o $(NAME) -L$(LIBFTDIR) -lft \
 						-L$(MLXDIR) -lmlx -framework OpenGL -framework Appkit -ggdb -fsanitize=address -fno-omit-frame-pointer
-					@ echo "cub3D compiled"
+					@ echo " >>> cub3D compiled <<< "
 
 clean:				
 					@ rm -f $(DFILES) $(OBJS) $(LIBFT) $(MLX)
 					@ $(MAKE) clean -C $(MLXDIR)
-					@ echo "Deleted dependencies"
+					@ echo " >>> Deleted dependencies <<< "
 
 fclean:				clean
 					@ rm -f $(NAME) 
-					@ echo "Deleted executable"
+					@ echo " >>> Deleted executable <<< "
 
 re:					fclean all
 

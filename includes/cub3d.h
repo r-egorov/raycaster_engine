@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/26 16:19:46 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/03 13:04:02 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@
 # define RED 0x00FF0000
 # define GREEN 0x0000FF00
 # define PI 3.1415926535
-# define MOV_SPEED 0.07
+# define MOV_SPEED 0.1
 # define ROT_SPEED 0.05
+# define SCREEN_HEIGHT 1440
+# define SCREEN_WIDTH 2560 
 
 int				g_errno;
 int				g_screen_height;

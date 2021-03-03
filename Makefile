@@ -6,13 +6,12 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/03/01 12:01:33 by cisis            ###   ########.fr        #
+#    Updated: 2021/03/03 14:40:31 by cisis            ###   ########.fr        #
 #    Updated: 2021/02/03 18:01:18 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	cub3D
-MLX				=	libmlx.dylib	
 
 INCLUDES		=	./includes/
 
@@ -20,6 +19,7 @@ LIBFTDIR		=	./libft/
 LIBFT			=	$(LIBFTDIR)libft.a
 
 MLXDIR			=	./minilibx/
+MLX				=	$(MLXDIR)libmlx.a
 
 MAINDIR			=	./main/
 PARCERDIR		=	./parser/
@@ -73,27 +73,22 @@ $(LIBFT):
 $(MLX):
 					@ echo "Compiling minilibx..."
 					@ $(MAKE) -C $(MLXDIR)
-					@ mv $(MLXDIR)$(MLX) .
-					@ $(MAKE) clean -C $(MLXDIR)
 					@ echo "Minilibx compiled"
 
 $(NAME):			$(LIBFT) $(MLX) $(OBJS)
 					@ echo "Compiling cub3D..."
 					@ gcc $(CCFLAGS) $(OBJS) -o $(NAME) -L$(LIBFTDIR) -lft \
-						-L. -lmlx -framework OpenGL -framework Appkit -ggdb -fsanitize=address -fno-omit-frame-pointer
+						-L$(MLXDIR) -lmlx -framework OpenGL -framework Appkit -ggdb -fsanitize=address -fno-omit-frame-pointer
 					@ echo "cub3D compiled"
 
-debug:				$(LIBFT) $(MLX) $(OBJS)
-					@ gcc -g $(CCFLAGS) $(OBJS) -o $(NAME) -L$(LIBFTDIR) -lft \
-						-L. -lmlx -framework OpenGL -framework Appkit -ggdb -fsanitize=address -fno-omit-frame-pointer
-
 clean:				
-					@ rm -f $(DFILES) $(OBJS) $(LIBFT) 
+					@ rm -f $(DFILES) $(OBJS) $(LIBFT) $(MLX)
+					@ $(MAKE) clean -C $(MLXDIR)
 					@ echo "Deleted dependencies"
 
 fclean:				clean
-					@ rm -f $(NAME) $(MLX)
-					@ echo "Deleted executable and dynamic library"
+					@ rm -f $(NAME) 
+					@ echo "Deleted executable"
 
 re:					fclean all
 

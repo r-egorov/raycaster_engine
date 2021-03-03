@@ -2,7 +2,7 @@
 .git
 cub3D
 .idea
-libmlx.dylib
+libmlx.a
 tags
 cub3D.dSYM/
 libmlx.dylib.dSYM/

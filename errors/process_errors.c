@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:21:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/03/01 16:30:14 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/03 12:52:04 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	fill_msgs(char *(*arr)[40])
 	msgs[18] = "Invalid char in the map";
 	msgs[19] = "Invalid zero position in the map";
 	msgs[20] = "Invalid space position in the map";
-	msgs[21] = "Invalid texture extension (has to be .png)";
+	msgs[21] = "Invalid texture extension (has to be .xpm)";
 	msgs[22] = "Invalid texture filename (too many dots)";
 	msgs[23] = "Double player position";
 	msgs[24] = "Double R parameter";

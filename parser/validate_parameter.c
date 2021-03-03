@@ -6,20 +6,20 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 15:58:08 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 18:51:20 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/03 12:54:23 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	is_png(char *extension)
+static int	is_xpm(char *extension)
 {
 	int		i;
 
 	i = ft_strlen(extension);
-	if ((extension[i - 1] == 'g') &&
-		(extension[i - 2] == 'n') &&
-		(extension[i - 3] == 'p'))
+	if ((extension[i - 1] == 'm') &&
+		(extension[i - 2] == 'p') &&
+		(extension[i - 3] == 'x'))
 		return (1);
 	return (0);
 }
@@ -45,7 +45,7 @@ static int	is_texture(char *path)
 		return (0);
 	}
 	extension = splitted[i - 1];
-	if (is_png(extension))
+	if (is_xpm(extension))
 		res = 1;
 	else
 		res = 0;

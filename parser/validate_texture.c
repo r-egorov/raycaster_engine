@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:23:30 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 18:40:52 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/03 12:51:50 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ static void	set_path(char *path, int mode, t_parsed *parsed)
 		set_floor_ceiling(path, mode, parsed);
 }
 
-static int	is_png(char *path)
+static int	is_xpm(char *path)
 {
 	int		last_char;
 
 	last_char = ft_strlen(path) - 1;
-	if ((path[last_char] == 'g') &&
-		(path[last_char - 1] == 'n') &&
-		(path[last_char - 2] == 'p') &&
+	if ((path[last_char] == 'm') &&
+		(path[last_char - 1] == 'p') &&
+		(path[last_char - 2] == 'x') &&
 		(path[last_char - 3] == '.'))
 		return (1);
 	return (0);
@@ -79,7 +79,7 @@ void		validate_texture(char **parameters, t_parsed *parsed, int mode)
 		g_errno = 2;
 		return ;
 	}
-	if (!(is_png(path)))
+	if (!(is_xpm(path)))
 	{
 		g_errno = 21;
 		return ;

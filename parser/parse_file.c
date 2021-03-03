@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:47:50 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 17:42:21 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/03 13:15:11 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static int		init_list(int fd, t_list **head)
 		list_append(head, line);
 		free_str(line);
 	}
+	close(fd);
 	return (0);
 }
 

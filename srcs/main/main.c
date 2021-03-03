@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:07:43 by cisis             #+#    #+#             */
-/*   Updated: 2021/03/03 14:59:02 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/03 15:35:44 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int			main(int argc, char **argv)
 		return (-1);
 	all.window.mlx = mlx_init();
 	errno = 0;
+	mlx_get_screen_size(&g_screen_width, &g_screen_height);
 	if ((parse_file(argv[1], &(all.parsed)) == -1) ||
 		!(valid_floor_ceiling(&(all.parsed))))
 		return (-1);

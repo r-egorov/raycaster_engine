@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 16:41:32 by cisis             #+#    #+#             */
-/*   Updated: 2021/03/03 12:23:13 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/03 15:35:10 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ static int	validate_value(char *str)
 
 static void	set_height(int parameter_height, t_parsed *parsed)
 {
-	if (parameter_height > SCREEN_HEIGHT)
-		parsed->res_height = SCREEN_HEIGHT;
+	if (parameter_height > g_screen_height)
+		parsed->res_height = g_screen_height;
 	else
 		parsed->res_height = parameter_height;
 }
 
 static void	set_width(int parameter_width, t_parsed *parsed)
 {
-	if (parameter_width > SCREEN_WIDTH)
-		parsed->res_width = SCREEN_WIDTH;
+	if (parameter_width > g_screen_width)
+		parsed->res_width = g_screen_width;
 	else
 		parsed->res_width = parameter_width;
 }

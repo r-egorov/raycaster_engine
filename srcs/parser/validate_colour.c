@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:18:10 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 18:37:44 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/10 16:59:36 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,21 @@ static void	validate_rgb(char **nums_strs, t_parsed *parsed, int mode)
 		parsed->ceiling_colour = rgb;
 }
 
+static int	commas_num(char *str)
+{
+	int		res;
+	int		i;
+
+	res = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i++] == ',')
+			res += 1;
+	}
+	return (res);
+}
+
 void		validate_colour(char **parameters, t_parsed *parsed, int mode)
 {
 	char	**nums_strs;
@@ -79,6 +94,11 @@ void		validate_colour(char **parameters, t_parsed *parsed, int mode)
 	}
 	if (invalid_chars(parameters[1]))
 		return ;
+	if (commas_num(parameters[1]) > 2)
+	{
+		g_errno = 33;
+		return ;
+	}
 	if (!(nums_strs = ft_split(parameters[1], ',')))
 	{
 		g_errno = 2;

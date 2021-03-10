@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:47:51 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/17 10:24:51 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/10 19:01:02 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,50 @@
 
 static void	move(t_all *all)
 {
+	double		speed;
+
+	speed = MOV_SPEED + 0.01;
 	if (all->keys.s == 1)
 	{
 		if (all->parsed.map[(int)(all->plr_pos.y)]\
-				[(int)(all->plr_pos.x - all->plr_pos.dir.x * MOV_SPEED)] != '1')
+				[(int)(all->plr_pos.x - all->plr_pos.dir.x * speed)] != '1')
 			all->plr_pos.x -= all->plr_pos.dir.x * MOV_SPEED;
 		if (all->parsed.map[(int)(all->plr_pos.y - all->plr_pos.dir.y
-			* MOV_SPEED)][(int)(all->plr_pos.x)] != '1')
+			* speed)][(int)(all->plr_pos.x)] != '1')
 			all->plr_pos.y -= all->plr_pos.dir.y * MOV_SPEED;
 	}
 	if (all->keys.w == 1)
 	{
 		if (all->parsed.map[(int)(all->plr_pos.y)]\
-				[(int)(all->plr_pos.x + all->plr_pos.dir.x * MOV_SPEED)] != '1')
+				[(int)(all->plr_pos.x + all->plr_pos.dir.x * speed)] != '1')
 			all->plr_pos.x += all->plr_pos.dir.x * MOV_SPEED;
 		if (all->parsed.map[(int)(all->plr_pos.y + all->plr_pos.dir.y
-			* MOV_SPEED)][(int)(all->plr_pos.x)] != '1')
+			* speed)][(int)(all->plr_pos.x)] != '1')
 			all->plr_pos.y += all->plr_pos.dir.y * MOV_SPEED;
 	}
 }
 
 static void	strafe(t_all *all)
 {
+	double		speed;
+
+	speed = MOV_SPEED + 0.01;
 	if (all->keys.a == 1)
 	{
 		if (all->parsed.map[(int)(all->plr_pos.y)][(int)(all->plr_pos.x
-							+ all->plr_pos.plane.x * MOV_SPEED)] != '1')
+							+ all->plr_pos.plane.x * speed)] != '1')
 			all->plr_pos.x += all->plr_pos.plane.x * MOV_SPEED;
 		if (all->parsed.map[(int)(all->plr_pos.y + all->plr_pos.plane.y
-					* MOV_SPEED)][(int)(all->plr_pos.x)] != '1')
+					* speed)][(int)(all->plr_pos.x)] != '1')
 			all->plr_pos.y += all->plr_pos.plane.y * MOV_SPEED;
 	}
 	if (all->keys.d == 1)
 	{
 		if (all->parsed.map[(int)(all->plr_pos.y)][(int)(all->plr_pos.x
-					- all->plr_pos.plane.x * MOV_SPEED)] != '1')
+					- all->plr_pos.plane.x * speed)] != '1')
 			all->plr_pos.x -= all->plr_pos.plane.x * MOV_SPEED;
 		if (all->parsed.map[(int)(all->plr_pos.y - all->plr_pos.plane.y
-					* MOV_SPEED)][(int)(all->plr_pos.x)] != '1')
+					* speed)][(int)(all->plr_pos.x)] != '1')
 			all->plr_pos.y -= all->plr_pos.plane.y * MOV_SPEED;
 	}
 }

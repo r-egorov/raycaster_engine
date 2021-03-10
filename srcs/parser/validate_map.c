@@ -6,36 +6,11 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 14:53:24 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 19:06:29 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/10 15:39:14 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static int	make_map(t_list **begin, int lst_size, t_parsed *parsed)
-{
-	char		**map;
-	size_t		i;
-	t_list		*head;
-
-	head = *begin;
-	if (!(map = ft_calloc(lst_size + 1, sizeof(char*))))
-		return (-1);
-	i = 0;
-	while (head)
-	{
-		if (*(char*)head->content == '\0')
-			break ;
-		if (!(map[i++] = ft_strdup(head->content)))
-			return (-1);
-		head = head->next;
-	}
-	map[i] = NULL;
-	parsed->map = map;
-	parsed->map_height = i;
-	*begin = head;
-	return (0);
-}
 
 static int	valid_char_in_map(char c)
 {

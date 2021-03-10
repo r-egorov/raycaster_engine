@@ -6,7 +6,7 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/03/10 15:33:12 by cisis            ###   ########.fr        #
+#    Updated: 2021/03/10 16:35:29 by cisis            ###   ########.fr        #
 #    Updated: 2021/02/03 18:01:18 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -33,7 +33,8 @@ PARSERSRCS		=	$(PARCERDIR)parse_file.c $(PARCERDIR)validate_list.c \
 					$(PARCERDIR)validate_resolution.c $(PARCERDIR)validate_texture.c \
 					$(PARCERDIR)valid_number_params.c $(PARCERDIR)validate_colour.c \
 					$(PARCERDIR)validate_map.c $(PARCERDIR)valid_zero_map.c \
-					$(PARCERDIR)valid_space_map.c $(PARCERDIR)append_sprite.c
+					$(PARCERDIR)valid_space_map.c $(PARCERDIR)append_sprite.c \
+					$(PARCERDIR)make_map.c
 
 RCSTRSRCS		=	$(RCSTRDIR)drawing_utils.c $(RCSTRDIR)init_player.c\
 					$(RCSTRDIR)calculate_plr_pos.c $(RCSTRDIR)raycasting_wall.c \

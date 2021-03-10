@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 15:38:55 by cisis             #+#    #+#             */
-/*   Updated: 2021/03/10 16:51:32 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/10 19:38:35 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,18 @@ static void		fill_str(char *dest, char *src, t_parsed *parsed)
 	dest[i] = '\0';
 }
 
-int				make_map(t_list **begin, int lst_size, t_parsed *parsed)
+int				make_map(t_list **begin, t_parsed *parsed)
 {
 	char		**map;
 	size_t		i;
 	t_list		*head;
 
 	head = *begin;
-	if ((!(map = ft_calloc(lst_size + 1, sizeof(char*)))) ||
-		(map_malloc(map, lst_size, begin, parsed) == -1))
+	if ((!(map = ft_calloc(parsed->map_height + 1, sizeof(char*)))) ||
+		(map_malloc(map, parsed->map_height, begin, parsed) == -1))
 		return (-1);
 	i = 0;
-	while (head)
+	while (i < parsed->map_height)
 	{
 		if (*(char*)head->content == '\0')
 			break ;
@@ -83,7 +83,6 @@ int				make_map(t_list **begin, int lst_size, t_parsed *parsed)
 	}
 	map[i] = NULL;
 	parsed->map = map;
-	parsed->map_height = i;
 	*begin = head;
 	return (0);
 }

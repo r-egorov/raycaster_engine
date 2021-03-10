@@ -6,7 +6,7 @@
 #    By: cisis <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 16:35:10 by cisis             #+#    #+#              #
-#    Updated: 2021/03/10 16:35:29 by cisis            ###   ########.fr        #
+#    Updated: 2021/03/10 19:19:18 by cisis            ###   ########.fr        #
 #    Updated: 2021/02/03 18:01:18 by cisis            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -82,7 +82,7 @@ $(MLX):
 $(NAME):			$(LIBFT) $(MLX) $(OBJS)
 					@ echo " >>> Compiling cub3D... <<< "
 					@ gcc $(CCFLAGS) $(OBJS) -o $(NAME) -L$(LIBFTDIR) -lft \
-						-L$(MLXDIR) -lmlx -framework OpenGL -framework Appkit -ggdb -fsanitize=address -fno-omit-frame-pointer
+						-L$(MLXDIR) -lmlx -framework OpenGL -framework Appkit 
 					@ echo " >>> cub3D compiled <<< "
 
 debug:				$(LIBFT) $(MLX) $(OBJS)

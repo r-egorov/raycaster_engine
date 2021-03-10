@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:48:12 by cisis             #+#    #+#             */
-/*   Updated: 2021/03/10 16:35:05 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/10 19:38:13 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,7 @@ void			validate_colour(char **parameters, t_parsed *parsed, int mode);
 void			validate_map(t_list **begin, t_parsed *parsed);
 int				valid_space_map(t_parsed *parsed, int x, int y);
 int				valid_zero_map(t_parsed *parsed, int x, int y);
-int				make_map(t_list **begin, int lst_size, t_parsed *parsed);
+int				make_map(t_list **begin, t_parsed *parsed);
 void			free_str(void *line);
 void			free_strs(char **strs);
 void			free_parsed(t_parsed *parsed);

@@ -71,6 +71,8 @@ int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
 */
 
 
+void	mlx_get_screen_size(int *width, int *height);
+
 /*
 ** Image stuff
 */

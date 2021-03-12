@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 15:11:29 by cisis             #+#    #+#             */
-/*   Updated: 2021/03/01 10:51:11 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/12 12:59:43 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ static int	make_header(int fd, int bmpsize, t_all *all)
 
 	i = 0;
 	while (i < 54)
-		header[i++] = (unsigned char)(0);
-	header[0] = (unsigned char)('B');
-	header[1] = (unsigned char)('M');
+		header[i++] = 0;
+	header[0] = 'B';
+	header[1] = 'M';
 	int_to_char(header + 2, bmpsize);
-	header[10] = (unsigned char)(54);
-	header[14] = (unsigned char)(40);
+	header[10] = 54;
+	header[14] = 40;
 	int_to_char(header + 18, all->parsed.res_width);
 	int_to_char(header + 22, all->parsed.res_height);
-	header[26] = (unsigned char)(1);
-	header[28] = (unsigned char)(24);
+	header[26] = 1;
+	header[28] = 32;
 	if (write(fd, header, 54) < 0)
 		return (-1);
 	return (0);
@@ -53,12 +53,11 @@ static int	get_colour(t_all *all, int x, int y)
 	return (colour);
 }
 
-static int	make_bmp(int fd, t_all *all, int padding)
+static int	make_bmp(int fd, t_all *all)
 {
-	const unsigned char	zero[3] = {0, 0, 0};
 	int					y;
 	int					x;
-	int					colour;
+	unsigned int		colour;
 
 	y = all->parsed.res_height - 1;
 	while (y >= 0)
@@ -67,12 +66,10 @@ static int	make_bmp(int fd, t_all *all, int padding)
 		while (x < all->parsed.res_width)
 		{
 			colour = get_colour(all, x, y);
-			if (write(fd, &colour, 3) < 0)
+			if (write(fd, &colour, 4) < 0)
 				return (-1);
 			x++;
 		}
-		if (padding > 0 && write(fd, &zero, padding) < 0)
-			return (-1);
 		y--;
 	}
 	return (0);
@@ -82,14 +79,11 @@ int			make_screenshot(t_all *all)
 {
 	int		bmpsize;
 	int		fd;
-	int		padding;
 
-	padding = (4 - (all->parsed.res_width * 3) % 4) % 4;
-	bmpsize = 54 + (3 * (all->parsed.res_width + padding) *
-			all->parsed.res_height);
-	if (!((fd = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC, 0666)) >= 0
+	bmpsize = 54 + (4 * all->parsed.res_width * all->parsed.res_height);
+	if (!((fd = open("screenshot.bmp", O_WRONLY | O_CREAT, 0666)) >= 0
 		&& (make_header(fd, bmpsize, all) != -1)
-		&& (make_bmp(fd, all, padding) != -1)))
+		&& (make_bmp(fd, all) != -1)))
 	{
 		process_error();
 		return (-1);

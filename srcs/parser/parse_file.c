@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:47:50 by cisis             #+#    #+#             */
-/*   Updated: 2021/03/12 12:31:30 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/12 12:57:21 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int				parse_file(char *filepath, t_parsed *parsed)
 	t_list		*head;
 
 	res = 0;
+	fd = 0;
 	head = NULL;
 	if ((!(is_cub(filepath))) ||
 		((fd = open(filepath, O_RDONLY)) == -1) ||
@@ -71,6 +72,8 @@ int				parse_file(char *filepath, t_parsed *parsed)
 		(validate_list(parsed, head)) == -1)
 		res = -1;
 	ft_lstclear(&head, free_str);
+	if (fd > 0)
+		close(fd);
 	if (res == -1)
 		return (process_error());
 	return (res);

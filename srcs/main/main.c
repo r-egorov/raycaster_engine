@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:07:43 by cisis             #+#    #+#             */
-/*   Updated: 2021/03/10 19:46:04 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/12 12:37:30 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,12 @@ int			main(int argc, char **argv)
 	init_struct(&all);
 	if (!(valid_args(argc, argv, &all)))
 		return (-1);
-	all.window.mlx = mlx_init();
-	errno = 0;
 	mlx_get_screen_size(&g_screen_width, &g_screen_height);
+	errno = 0;
 	if ((parse_file(argv[1], &(all.parsed)) == -1) ||
 		!(valid_floor_ceiling(&(all.parsed))))
-	{
-		free(all.window.mlx);
 		return (-1);
-	}
+	all.window.mlx = mlx_init();
 	init_player_position(&all);
 	launch_mlx(&all);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:18:10 by cisis             #+#    #+#             */
-/*   Updated: 2021/03/10 16:59:36 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/15 17:44:06 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void		validate_colour(char **parameters, t_parsed *parsed, int mode)
 	}
 	if (invalid_chars(parameters[1]))
 		return ;
-	if (commas_num(parameters[1]) > 2)
+	if (commas_num(parameters[1]) != 2)
 	{
 		g_errno = 33;
 		return ;

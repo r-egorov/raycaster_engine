@@ -9,3 +9,5 @@ libmlx.dylib.dSYM/
 *backup*
 *.cub
 screenshot.bmp
+*.o
+*.d

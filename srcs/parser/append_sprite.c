@@ -6,7 +6,11 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:32:09 by cisis             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/03/15 17:46:00 by cisis            ###   ########.fr       */
+=======
+/*   Updated: 2021/03/15 13:29:17 by cisis            ###   ########.fr       */
+>>>>>>> 4b1e05a8f5a6ed4dad1cb9b902c7206a87d06175
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +26,8 @@ void		make_sprite_arrays(t_parsed *parsed)
 		g_errno = 2;
 		return ;
 	}
-	if (!(sprite_distance = (double*)malloc(sizeof(double) * parsed->n_sprites)))
+	if (!(sprite_distance = (double*)malloc(sizeof(double) *
+							parsed->n_sprites)))
 	{
 		g_errno = 2;
 		return ;

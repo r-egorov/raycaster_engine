@@ -6,7 +6,7 @@
 /*   By: cisis <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:32:09 by cisis             #+#    #+#             */
-/*   Updated: 2021/02/25 18:40:40 by cisis            ###   ########.fr       */
+/*   Updated: 2021/03/15 13:23:42 by cisis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		make_sprite_arrays(t_parsed *parsed)
 		g_errno = 2;
 		return ;
 	}
-	if (!(sprite_distance = (double*)malloc(sizeof(int) * parsed->n_sprites)))
+	if (!(sprite_distance = (double*)malloc(sizeof(double) * parsed->n_sprites)))
 	{
 		g_errno = 2;
 		return ;
